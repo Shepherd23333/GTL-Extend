@@ -86,7 +86,6 @@ public class MachineRecipe {
                         .CWUt(128))
                 .save(provider);
 
-
         ASSEMBLER_RECIPES.recipeBuilder("superfluid_general_energy_furnace")
                 .inputItems(Registries.getItem("gtceu:electric_blast_furnace"), 8)
                 .inputItems(Registries.getItem("gtceu:alloy_blast_smelter"), 8)

@@ -13,6 +13,7 @@ import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class OneStopPlatinumTreatmentRecipe {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder("platinum_treatment")
                 .inputItems(Registries.getItem("gtceu:platinum_group_sludge_dust"), 5000)

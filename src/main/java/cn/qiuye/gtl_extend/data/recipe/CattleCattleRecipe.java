@@ -11,6 +11,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Milk;
 
 public class CattleCattleRecipe {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         CATTLE_CATTLE_MACHINE_RECIPES.recipeBuilder("gtl_extend_milk")
                 .notConsumable(Registries.getItem("minecraft:cow_spawn_egg"))

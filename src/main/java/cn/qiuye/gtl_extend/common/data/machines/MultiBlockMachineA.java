@@ -1,9 +1,10 @@
 package cn.qiuye.gtl_extend.common.data.machines;
 
 import appeng.core.AppEng;
-import cn.qiuye.gtl_extend.api.machine.multiblock.BlackHoleMatterDecompressorRender;
 import cn.qiuye.gtl_extend.api.registries.GTLEXRegistration;
 import cn.qiuye.gtl_extend.api.registries.GetRegistries;
+import cn.qiuye.gtl_extend.client.renderer.machine.BlackHoleMatterDecompressorRender;
+import cn.qiuye.gtl_extend.client.renderer.machine.DimensionalPowerRender;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Blocks;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_CreativeModeTabs;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_RecipeTypes;
@@ -14,6 +15,7 @@ import cn.qiuye.gtl_extend.common.data.machines.MultiBlock.Platinum_basedProcess
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlock.Void_Pump.Void_Pump_MultiBlockStructure;
 import cn.qiuye.gtl_extend.common.machine.multiblock.electric.BlackHoleMatterDecompressor;
 import cn.qiuye.gtl_extend.common.machine.multiblock.electric.CRTierCasingMachine;
+import cn.qiuye.gtl_extend.common.machine.multiblock.electric.DimensionalPower;
 import cn.qiuye.gtl_extend.common.machine.multiblock.electric.GTLEXSuperfluidGeneralEnergyFurnaceMachine;
 import cn.qiuye.gtl_extend.common.machine.multiblock.steam.GeneralPurposeSteamEngine;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
@@ -48,6 +50,7 @@ public class MultiBlockMachineA {
 
     public static final MultiblockMachineDefinition SUPERFLUID_GENERAL_ENERGY_FURNACE;
     public static final MultiblockMachineDefinition BLACK_HOLE_MATTER_DECOMPRESSOR;
+    public static final MultiblockMachineDefinition DIMENSIONALPOWER;
     public static final MultiblockMachineDefinition PLATINUM_BASE_DPROCESSING_HUB;
     public static final MultiblockMachineDefinition LARGE_VOID_PUMP;
     public static final MultiblockMachineDefinition CATTLE_CATTLE_MACHINE;
@@ -252,7 +255,7 @@ public class MultiBlockMachineA {
                 .appearanceBlock(HIGH_POWER_CASING)
                 .recipeType(GTLRecipeTypes.COSMOS_SIMULATION_RECIPES)
                 .recipeType(GTL_Extend_RecipeTypes.HORIZON_MATTER_DECOMPRESSION_RECIPES)
-                .recipeModifier((machine, recipe, params, result) -> ((BlackHoleMatterDecompressor) machine).recipeModifier(recipe, params, result))
+                .recipeModifier((machine, recipe, params, result) -> ((BlackHoleMatterDecompressor) machine).recipeModifier(recipe))
                 .tooltips(Component.literal(TextUtil.full_color("创造一个黑洞，并从里面获取无限的资源")))
                 .tooltips(Component.literal("这台机器需要巨量的EU，无法使用常规手段供能"))
                 .tooltips(Component.literal("由无线电网直接供电，具体数值可在GUI內查看"))
@@ -288,6 +291,41 @@ public class MultiBlockMachineA {
                         .where('Q', blocks(GetRegistries.getBlock("gtlcore:infinity_glass")))
                         .build())
                 .renderer(BlackHoleMatterDecompressorRender::new)
+                .hasTESR(true)
+                .register();
+
+        DIMENSIONALPOWER = GTLEXRegistration.REGISTRATE.multiblock("dimensionalpower", DimensionalPower::new)
+                .rotationState(RotationState.NON_Y_AXIS)
+                .appearanceBlock(HIGH_POWER_CASING)
+                .recipeType(GTL_Extend_RecipeTypes.DIMENSIONALPOWER_RECIPES)
+                .recipeModifier((machine, recipe, params, result) -> ((DimensionalPower) machine).recipeModifier(recipe))
+                .tooltipBuilder(GTL_EX_ADD)
+                .pattern(definition -> BlackHoleMatterDecompressor_MultiBlockStructure.BLACK_HOLE_DECOMPRESSION
+                        .where('~', Predicates.controller(blocks(definition.getBlock())))
+                        .where(" ", Predicates.any())
+                        .where('A', Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get())
+                                .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1)))
+                        .where('B', blocks(GetRegistries.getBlock("kubejs:dyson_control_casing")))
+                        .where('C', blocks(GetRegistries.getBlock("gtlcore:graviton_field_constraint_casing")))
+                        .where('D', blocks(GetRegistries.getBlock("kubejs:containment_field_generator")))
+                        .where('E', blocks(GetRegistries.getBlock("gtlcore:hyper_core")))
+                        .where('F', blocks(GetRegistries.getBlock("gtlcore:naquadah_alloy_casing")))
+                        .where('G', blocks(GetRegistries.getBlock("gtlcore:rhenium_reinforced_energy_glass")))
+                        .where('H', blocks(GetRegistries.getBlock("kubejs:hollow_casing")))
+                        .where('I', blocks(GetRegistries.getBlock("kubejs:dyson_receiver_casing")))
+                        .where('J', blocks(GetRegistries.getBlock("gtlcore:degenerate_rhenium_constrained_casing")))
+                        .where('K', blocks(GetRegistries.getBlock("gtlcore:hyper_mechanical_casing")))
+                        .where('L', blocks(GetRegistries.getBlock("kubejs:restraint_device")))
+                        .where('M', blocks(GetRegistries.getBlock("gtceu:fusion_glass")))
+                        .where('N', blocks(GetRegistries.getBlock("kubejs:spacetime_compression_field_generator")))
+                        .where('O', blocks(GetRegistries.getBlock("kubejs:annihilate_core")))
+                        .where('P', blocks(GetRegistries.getBlock("kubejs:dimensional_stability_casing")))
+                        .where('Q', blocks(GetRegistries.getBlock("gtlcore:infinity_glass")))
+                        .build())
+                .renderer(DimensionalPowerRender::new)
                 .hasTESR(true)
                 .register();
 

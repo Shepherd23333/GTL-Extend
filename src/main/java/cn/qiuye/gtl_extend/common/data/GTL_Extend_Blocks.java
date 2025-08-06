@@ -24,7 +24,6 @@ public class GTL_Extend_Blocks {
 
     /**
      * 创建带有自定义属性的技术类方块（如机器外壳）
-     *
      */
     public static final BlockEntry<Block> DIMENSION_CORE = createCasingBlock(
             "dimension_core",
@@ -41,6 +40,13 @@ public class GTL_Extend_Blocks {
 
     public static void init() {}
 
+    /**
+     * @param name
+     * @param texture
+     * @param renderType
+     * @param baseProperties
+     * @return 方块注册对象
+     */
     public static BlockEntry<Block> createCasingBlock(
             String name,
             ResourceLocation texture,
@@ -68,6 +74,16 @@ public class GTL_Extend_Blocks {
         return blockEntry;
     }
 
+    /**
+     *
+     * @param name
+     * @param texture
+     * @param renderType
+     * @param baseProperties
+     * @param targetMap
+     * @param tier
+     * @return 方块注册对象
+     */
     public static BlockEntry<Block> createCasingBlock(
             String name,
             ResourceLocation texture,

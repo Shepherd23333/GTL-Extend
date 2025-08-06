@@ -8,6 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.gtlcore.gtlcore.utils.StorageManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,27 @@ public class GTL_Extend {
         return new ResourceLocation(MODID, name);
     }
 
+    /**
+     * @return if we're running in a production environment
+     */
+    public static boolean isProd() {
+        return FMLLoader.isProduction();
+    }
+
+    /**
+     * @return if we're not running in a production environment
+     */
+    public static boolean isDev() {
+        return !isProd();
+    }
+
+    /**
+     * @return if we're running data generation
+     */
+    public static boolean isDataGen() {
+        return FMLLoader.getLaunchHandler().isData();
+    }
+
     public GTL_Extend() {
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         MinecraftForge.EVENT_BUS.register(this);
@@ -37,6 +59,5 @@ public class GTL_Extend {
         if (event.phase == TickEvent.Phase.START && event.side.isServer()) {
             STORAGE_INSTANCE = StorageManager.getInstance((MinecraftServer) Objects.requireNonNull(event.level.getServer()));
         }
-
     }
 }

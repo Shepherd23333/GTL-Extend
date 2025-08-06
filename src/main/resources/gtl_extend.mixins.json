@@ -7,7 +7,9 @@
   "client": [
   ],
   "mixins": [
-    "gtl.GTL_EX_AddionMixin"
+    "gtl.GTL_EX_AddionMixin",
+    "gtl.NumberUtilsMixin",
+    "gtmt.WirelessEnergyMonitorMixin"
   ],
   "injectors": {
     "defaultRequire": 1,

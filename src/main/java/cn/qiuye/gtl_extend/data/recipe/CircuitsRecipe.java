@@ -14,6 +14,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static org.gtlcore.gtlcore.common.data.GTLRecipeTypes.SUPRACHRONAL_ASSEMBLY_LINE_RECIPES;
 
 public class CircuitsRecipe {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         if (GTLExtendConfigHolder.INSTANCE.enableInfinityDreamAndDreamHostCrafting) {
 

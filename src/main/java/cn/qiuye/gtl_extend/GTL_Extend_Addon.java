@@ -64,5 +64,6 @@ public class GTL_Extend_Addon implements IGTAddon {
         OneStopPlatinumTreatmentRecipe.init(provider);
         AdvFormulationLimitsRecipe.init(provider);
         HorizonMatterDecompression.init(provider);
+        DimensionalPowerRecipe.init(provider);
     }
 }

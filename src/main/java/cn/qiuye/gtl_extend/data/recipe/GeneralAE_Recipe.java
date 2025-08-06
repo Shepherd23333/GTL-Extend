@@ -13,6 +13,7 @@ import static com.gregtechceu.gtceu.api.GTValues.IV;
 import static com.gregtechceu.gtceu.api.GTValues.V;
 
 public class GeneralAE_Recipe {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         if (GTLExtendConfigHolder.INSTANCE.enableGeneralAEManufacturingMachine) {
             Object[][] aeCableConfigs = new Object[][]{

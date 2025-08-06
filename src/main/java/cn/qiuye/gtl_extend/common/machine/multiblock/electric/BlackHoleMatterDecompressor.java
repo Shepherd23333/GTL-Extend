@@ -4,8 +4,6 @@ import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
 import com.gregtechceu.gtceu.api.machine.ConditionalSubscriptionHandler;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.hepdd.gtmthings.api.misc.WirelessEnergyManager;
@@ -61,41 +59,38 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
 
     @Nullable
     public GTRecipe recipeModifier(
-            @NotNull GTRecipe recipe,
-            @NotNull OCParams params,
-            @NotNull OCResult result) {
-            if (this.oc == 0) return null;
-            int parallel = calculateParallel(); // 直接调用实例方法
-            long euCost = getRecipeEUt(); // 直接调用实例方法
+            @NotNull GTRecipe recipe) {
+        if (this.oc == 0) return null;
+        int parallel = calculateParallel(); // 直接调用实例方法
+        long euCost = getRecipeEUt(); // 直接调用实例方法
 
-            if (this.userId != null &&
-                    WirelessEnergyManager.addEUToGlobalEnergyMap(
-                            this.userId,
-                            -euCost,
-                            this)) {
+        if (this.userId != null &&
+                WirelessEnergyManager.addEUToGlobalEnergyMap(
+                        this.userId,
+                        -euCost,
+                        this)) {
 
-                GTRecipe modifiedRecipe = recipe.copy();
-                modifiedRecipe.duration = (int) (4800 / Math.pow(2, this.oc));
+            GTRecipe modifiedRecipe = recipe.copy();
+            modifiedRecipe.duration = (int) (4800 / Math.pow(2, this.oc));
 
-                // 应用精确并行处理并返回结果
-                return GTRecipeModifiers.accurateParallel(
-                        this, // 传入当前实例
-                        modifiedRecipe,
-                        parallel,
-                        false).getFirst();
-            }
+            // 应用精确并行处理并返回结果
+            return GTRecipeModifiers.accurateParallel(
+                    this, // 传入当前实例
+                    modifiedRecipe,
+                    parallel,
+                    false).getFirst();
+        }
         return null;
     }
 
     // 获取超频次数（电路配置映射）
     private int calculateOverclockTimes() {
-            return switch (Math.min(oc, 4)) {
-                case 3 -> 2;
-                case 4 -> 3;
-                default -> 1;
-            };
-        }
-
+        return switch (Math.min(oc, 4)) {
+            case 3 -> 2;
+            case 4 -> 3;
+            default -> 1;
+        };
+    }
 
     // 计算启动能耗
     private long getRecipeEUt() {
@@ -115,8 +110,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
 
     // 计算基础并行（电路编号的8次方，1号特殊处理）
     private int getBaseParallel() {
-            return (oc == 1) ? BASE_PARALLEL : (int) Math.pow(oc, 8);
-
+        return (oc == 1) ? BASE_PARALLEL : (int) Math.pow(oc, 8);
     }
 
     @Override
@@ -129,13 +123,13 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     public void onStructureFormed() {
         super.onStructureFormed();
         int[] priorityOrder = {8, 7, 6, 5, 4, 3, 2, 1};
-            for (int config : priorityOrder) {
-                this.oc = 0; // 通过this访问实例变量
-                if (MachineIO.notConsumableCircuit(this, config)) {
-                    this.oc = config;
-                    return;
+        for (int config : priorityOrder) {
+            this.oc = 0; // 通过this访问实例变量
+            if (MachineIO.notConsumableCircuit(this, config)) {
+                this.oc = config;
+                return;
 
-                }
+            }
         }
     }
 
@@ -191,7 +185,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
                         } catch (ArithmeticException e) {
                             maxAllowedEULong = Long.MAX_VALUE;
                         }
-                        textList.add(Component.literal("最大允许功率: " + FormattingUtil.formatNumbers(maxAllowedEU) + " EU/t"));
+                        textList.add(Component.literal("最大允许功率: " + FormattingUtil.formatNumbers(maxAllowedEULong) + " EU/t"));
                     }
                 }
             }

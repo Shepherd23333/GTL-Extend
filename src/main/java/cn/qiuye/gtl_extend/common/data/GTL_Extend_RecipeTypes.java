@@ -13,6 +13,10 @@ import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection
 
 public class GTL_Extend_RecipeTypes {
 
+    public final static GTRecipeType DIMENSIONALPOWER_RECIPES = register("dimensional_power", MULTIBLOCK)
+            .setMaxIOSize(1, 1, 1, 1)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.SCIENCE);
     public final static GTRecipeType HORIZON_MATTER_DECOMPRESSION_RECIPES = register("horizon_matter_decompression", MULTIBLOCK)
             .setMaxIOSize(1, 0, 1, 36)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)

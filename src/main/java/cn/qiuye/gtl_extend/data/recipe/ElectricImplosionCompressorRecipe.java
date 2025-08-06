@@ -11,6 +11,7 @@ import static com.gregtechceu.gtceu.api.GTValues.V;
 import static org.gtlcore.gtlcore.common.data.GTLRecipeTypes.ELECTRIC_IMPLOSION_COMPRESSOR_RECIPES;
 
 public class ElectricImplosionCompressorRecipe {
+
     public static void init(Consumer<FinishedRecipe> provider) {
         ELECTRIC_IMPLOSION_COMPRESSOR_RECIPES.recipeBuilder("large_world_void_pump")
                 .inputItems(Registries.getItem("gtceu:ev_fluid_drilling_rig"), 64)
