@@ -2,6 +2,8 @@ package cn.qiuye.gtl_extend.common;
 
 import cn.qiuye.gtl_extend.GTL_Extend;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_CreativeModeTabs;
+import cn.qiuye.gtl_extend.common.data.GTL_Extend_Machines;
+import cn.qiuye.gtl_extend.common.data.GTL_Extend_RecipeTypes;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
@@ -42,16 +44,16 @@ public class CommonProxy {
     }
 
     private void addMaterials(MaterialEvent event) {
-//        GTL_Extend_Materials.init();
+        // GTL_Extend_Materials.init();
     }
 
     private void modifyMaterials(PostMaterialEvent event) {}
 
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
-//        GTL_Extend_RecipeTypes.init();
+        GTL_Extend_RecipeTypes.init();
     }
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-//        MultiBlockMachine.init();
+        GTL_Extend_Machines.init();
     }
 }

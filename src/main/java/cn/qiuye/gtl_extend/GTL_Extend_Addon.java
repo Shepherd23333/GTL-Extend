@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 
 @GTAddon
 public class GTL_Extend_Addon implements IGTAddon {
+
     private static Consumer<FinishedRecipe> provider;
 
     @Override
@@ -28,7 +29,7 @@ public class GTL_Extend_Addon implements IGTAddon {
 
     @Override
     public void registerElements() {
-//        GTL_Extend_Elements.init();
+        // GTL_Extend_Elements.init();
     }
 
     @Override
@@ -48,12 +49,12 @@ public class GTL_Extend_Addon implements IGTAddon {
 
     @Override
     public void registerOreVeins() {
-//        GTL_Extend_Ores.init();
+        // GTL_Extend_Ores.init();
     }
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-//        CustomRecipe.init(provider);
-//        MiscRecipes.init(provider);
+        // CustomRecipe.init(provider);
+        // MiscRecipes.init(provider);
     }
 }

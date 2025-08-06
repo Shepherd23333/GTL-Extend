@@ -15,6 +15,7 @@ public class GTL_Extend_Item {
 
     public static final ItemEntry<Item> FOREVER;
     public static final ItemEntry<ComponentItem> ADVANCED_DATA_MODULE;
+    public static final ItemEntry<Item> ETERNALBLUE_DREAM_ULV_PROCESSOR_MAINFRAME;
     public static final ItemEntry<Item> ETERNALBLUE_DREAM_LV_PROCESSOR_MAINFRAME;
     public static final ItemEntry<Item> ETERNALBLUE_DREAM_MV_PROCESSOR_MAINFRAME;
     public static final ItemEntry<Item> ETERNALBLUE_DREAM_HV_PROCESSOR_MAINFRAME;
@@ -44,6 +45,7 @@ public class GTL_Extend_Item {
                 .onRegister(compassNode(GTCompassSections.COMPONENTS))
                 .register();
 
+        ETERNALBLUE_DREAM_ULV_PROCESSOR_MAINFRAME = registerMainframe("ulv");
         ETERNALBLUE_DREAM_LV_PROCESSOR_MAINFRAME = registerMainframe("lv");
         ETERNALBLUE_DREAM_MV_PROCESSOR_MAINFRAME = registerMainframe("mv");
         ETERNALBLUE_DREAM_HV_PROCESSOR_MAINFRAME = registerMainframe("hv");
