@@ -2,7 +2,10 @@ package cn.qiuye.gtl_extend;
 
 import cn.qiuye.gtl_extend.api.registries.GTLEXRegistration;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Blocks;
+import cn.qiuye.gtl_extend.common.data.GTL_Extend_Elements;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Item;
+import cn.qiuye.gtl_extend.common.data.GTL_Extend_Ores;
+import cn.qiuye.gtl_extend.data.recipe.*;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
@@ -14,11 +17,19 @@ import java.util.function.Consumer;
 @GTAddon
 public class GTL_Extend_Addon implements IGTAddon {
 
-    private static Consumer<FinishedRecipe> provider;
+    @Override
+    public String addonModId() {
+        return GTL_Extend.MODID;
+    }
 
     @Override
     public GTRegistrate getRegistrate() {
         return GTLEXRegistration.REGISTRATE;
+    }
+
+    @Override
+    public boolean requiresHighTier() {
+        return true;
     }
 
     @Override
@@ -29,12 +40,7 @@ public class GTL_Extend_Addon implements IGTAddon {
 
     @Override
     public void registerElements() {
-        // GTL_Extend_Elements.init();
-    }
-
-    @Override
-    public String addonModId() {
-        return GTL_Extend.MODID;
+        GTL_Extend_Elements.init();
     }
 
     @Override
@@ -43,18 +49,20 @@ public class GTL_Extend_Addon implements IGTAddon {
     }
 
     @Override
-    public void registerSounds() {
-        IGTAddon.super.registerSounds();
-    }
-
-    @Override
     public void registerOreVeins() {
-        // GTL_Extend_Ores.init();
+        GTL_Extend_Ores.init();
     }
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        // CustomRecipe.init(provider);
-        // MiscRecipes.init(provider);
+        MachineRecipe.init(provider);
+        CircuitsRecipe.init(provider);
+        GeneralAE_Recipe.init(provider);
+        VoidPumpRecipe.init(provider);
+        CattleCattleRecipe.init(provider);
+        ElectricImplosionCompressorRecipe.init(provider);
+        OneStopPlatinumTreatmentRecipe.init(provider);
+        AdvFormulationLimitsRecipe.init(provider);
+        HorizonMatterDecompression.init(provider);
     }
 }

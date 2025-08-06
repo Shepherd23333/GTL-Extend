@@ -3,6 +3,7 @@ package cn.qiuye.gtl_extend.common;
 import cn.qiuye.gtl_extend.GTL_Extend;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_CreativeModeTabs;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Machines;
+import cn.qiuye.gtl_extend.common.data.GTL_Extend_Materials;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_RecipeTypes;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
@@ -11,9 +12,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cn.qiuye.gtl_extend.api.registries.GTLEXRegistration.REGISTRATE;
@@ -24,10 +27,12 @@ public class CommonProxy {
         CommonProxy.init();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         REGISTRATE.registerEventListeners(eventBus);
+        eventBus.addListener(this::commonSetup);
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::addMaterialRegistries);
         eventBus.addListener(this::addMaterials);
         eventBus.addListener(this::modifyMaterials);
+        eventBus.addGenericListener(RecipeConditionType.class, this::registerRecipeConditions);
         eventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
     }
@@ -37,6 +42,9 @@ public class CommonProxy {
         GTLExtendConfigHolder.init();
     }
 
+    private void commonSetup(final FMLCommonSetupEvent event) {
+    }
+
     protected void clientSetup(final FMLClientSetupEvent event) {}
 
     private void addMaterialRegistries(MaterialRegistryEvent event) {
@@ -44,13 +52,16 @@ public class CommonProxy {
     }
 
     private void addMaterials(MaterialEvent event) {
-        // GTL_Extend_Materials.init();
+        GTL_Extend_Materials.init();
     }
 
     private void modifyMaterials(PostMaterialEvent event) {}
 
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
         GTL_Extend_RecipeTypes.init();
+    }
+
+    private void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType<?>> event) {
     }
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {

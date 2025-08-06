@@ -39,8 +39,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     // 常量定义
     private static final int BASE_PARALLEL = 64;
     private static final long BASE_EU_COST = 5277655810867200L;
-    // 将ocLock改为实例变量
-    private final Object ocLock = new Object();
+
     protected ConditionalSubscriptionHandler StartupSubs;
     @Persisted
     private long eternalbluedream = 0; // 永恒蓝梦流体存储量
@@ -65,7 +64,6 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
             @NotNull GTRecipe recipe,
             @NotNull OCParams params,
             @NotNull OCResult result) {
-        synchronized (ocLock) {
             if (this.oc == 0) return null;
             int parallel = calculateParallel(); // 直接调用实例方法
             long euCost = getRecipeEUt(); // 直接调用实例方法
@@ -86,20 +84,18 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
                         parallel,
                         false).getFirst();
             }
-        }
         return null;
     }
 
     // 获取超频次数（电路配置映射）
     private int calculateOverclockTimes() {
-        synchronized (ocLock) {
             return switch (Math.min(oc, 4)) {
                 case 3 -> 2;
                 case 4 -> 3;
                 default -> 1;
             };
         }
-    }
+
 
     // 计算启动能耗
     private long getRecipeEUt() {
@@ -119,9 +115,8 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
 
     // 计算基础并行（电路编号的8次方，1号特殊处理）
     private int getBaseParallel() {
-        synchronized (ocLock) {
             return (oc == 1) ? BASE_PARALLEL : (int) Math.pow(oc, 8);
-        }
+
     }
 
     @Override
@@ -134,14 +129,13 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     public void onStructureFormed() {
         super.onStructureFormed();
         int[] priorityOrder = {8, 7, 6, 5, 4, 3, 2, 1};
-        synchronized (ocLock) { // 使用实例的ocLock
             for (int config : priorityOrder) {
                 this.oc = 0; // 通过this访问实例变量
                 if (MachineIO.notConsumableCircuit(this, config)) {
                     this.oc = config;
                     return;
+
                 }
-            }
         }
     }
 

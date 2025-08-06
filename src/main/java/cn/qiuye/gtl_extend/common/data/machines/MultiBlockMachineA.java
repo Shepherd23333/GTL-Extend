@@ -88,7 +88,7 @@ public class MultiBlockMachineA {
                     .register();
         }
         if (GTLExtendConfigHolder.INSTANCE.enableGeneralPurposeSteamEngine) {
-            GENERAL_PURPOSE_STEAM_ENGINE = GTLEXRegistration.REGISTRATE.multiblock("general_purpose_steam_engine", (holder) -> new GeneralPurposeSteamEngine(holder, 512))
+            GENERAL_PURPOSE_STEAM_ENGINE = GTLEXRegistration.REGISTRATE.multiblock("general_purpose_steam_engine", (holder) -> new GeneralPurposeSteamEngine(holder, 4096))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(GTLRecipeTypes.LAVA_FURNACE_RECIPES)
                     .recipeType(GTRecipeTypes.FORGE_HAMMER_RECIPES)
