@@ -5,9 +5,9 @@ import org.jetbrains.annotations.Nullable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-
 @SuppressWarnings("UnnecessaryUnicodeEscape")
 public class FormattingUtil {
+
     public static final DecimalFormat DECIMAL_FORMAT_1F = new DecimalFormat("#,##0.#");
     public static final DecimalFormat DECIMAL_FORMAT_2F = new DecimalFormat("#,##0.##");
     public static final DecimalFormat DECIMAL_FORMAT_SIC_2F = new DecimalFormat("0.00E00");

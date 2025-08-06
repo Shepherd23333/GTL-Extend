@@ -11,6 +11,7 @@ import static cn.qiuye.gtl_extend.utils.FormattingUtil.DECIMAL_FORMAT_SIC_2F;
 import static cn.qiuye.gtl_extend.utils.FormattingUtil.formatNumberReadable;
 
 public class NumberUtils {
+
     public static @NotNull String formatNumber(double number) {
         final String[] UNITS = {"", "K", "M", "G", "T", "P", "E", "Z", "Y", "B", "N", "D"};
         DecimalFormat df = new DecimalFormat("#.##");

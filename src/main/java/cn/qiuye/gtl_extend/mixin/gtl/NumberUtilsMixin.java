@@ -42,5 +42,4 @@ public class NumberUtilsMixin {
     public static MutableComponent numberText(long number) {
         return Component.literal(formatLong(number));
     }
-
 }

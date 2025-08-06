@@ -18,10 +18,8 @@ public class WirelessEnergyMonitorMixin {
                     // 使用Object类型匹配实际运行时签名
                     target = "Lcom/gregtechceu/gtceu/utils/FormattingUtil;formatNumbers(Ljava/lang/Object;)Ljava/lang/String;",
                     // 指定替换第一次出现的调用（总能量显示）
-                    ordinal = 0
-            ),
-            remap = false
-    )
+                    ordinal = 0),
+            remap = false)
     private String redirectFormatNumbers(Object number) {
         return NumberUtils.formatBigIntegerNumberOrSic((BigInteger) number);
     }
