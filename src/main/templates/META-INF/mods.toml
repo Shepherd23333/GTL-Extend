@@ -1,0 +1,17 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "${mod_license}"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${version}"
+displayName = "${mod_name}"
+authors="qiuyeqaq, 荀彧，疏影"
+description = "增加了一系列的超级机器(虽然很贵就是了),一些贴图由荀彧提供，一些结构由疏影提供"
+
+[[dependencies.${mod_id}]]
+modId = "gtceu"
+mandatory = true
+versionRange = "[${gtceu_version},)"
+ordering = "AFTER"
+side = "BOTH"

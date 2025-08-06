@@ -1,0 +1,9 @@
+{
+  "flip_v": true,
+  "loader": "forge:obj",
+  "model": "gtl_extend:rendered/black_hole/accretion_disk.obj",
+  "textures": {
+    "texture0": "gtl_extend:rendered/black_hole/accretion_disk",
+    "particle":"gtl_extend:rendered/black_hole/accretion_disk"
+  }
+}

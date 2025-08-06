@@ -1,0 +1,6 @@
+{
+  "textures": {
+    "texture0": "gtl_extend:rendered/black_hole/black_hole_glow",
+    "particle":"gtl_extend:rendered/black_hole/black_hole_glow"
+  }
+}
