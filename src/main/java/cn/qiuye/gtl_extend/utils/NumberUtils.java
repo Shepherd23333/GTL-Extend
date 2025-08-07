@@ -4,6 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 
@@ -38,6 +39,10 @@ public class NumberUtils {
 
     public static MutableComponent numberText(long number) {
         return Component.literal(formatLong(number));
+    }
+
+    public static String formatBigDecimalNumberOrSic(BigDecimal number) {
+        return number.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0 ? FormattingUtil.DECIMAL_FORMAT_SIC_2F.format(number) : FormattingUtil.formatNumberReadable(number.longValue());
     }
 
     public static String formatBigIntegerNumberOrSic(BigInteger number) {
