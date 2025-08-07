@@ -1,6 +1,5 @@
 package cn.qiuye.gtl_extend.common.data.machines;
 
-import appeng.core.AppEng;
 import cn.qiuye.gtl_extend.api.registries.GTLEXRegistration;
 import cn.qiuye.gtl_extend.api.registries.GetRegistries;
 import cn.qiuye.gtl_extend.client.renderer.machine.BlackHoleMatterDecompressorRender;
@@ -19,6 +18,11 @@ import cn.qiuye.gtl_extend.common.machine.multiblock.electric.DimensionalPower;
 import cn.qiuye.gtl_extend.common.machine.multiblock.electric.GTLEXSuperfluidGeneralEnergyFurnaceMachine;
 import cn.qiuye.gtl_extend.common.machine.multiblock.steam.GeneralPurposeSteamEngine;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+
+import org.gtlcore.gtlcore.api.pattern.GTLPredicates;
+import org.gtlcore.gtlcore.common.data.GTLRecipeTypes;
+import org.gtlcore.gtlcore.utils.TextUtil;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
@@ -28,11 +32,9 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.data.*;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import org.gtlcore.gtlcore.api.pattern.GTLPredicates;
-import org.gtlcore.gtlcore.common.data.GTLRecipeTypes;
-import org.gtlcore.gtlcore.utils.TextUtil;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -41,6 +43,8 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
 import static com.gregtechceu.gtceu.common.data.GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.ADVANCED_COMPUTER_CASING;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.HIGH_POWER_CASING;
+
+import appeng.core.AppEng;
 
 public class MultiBlockMachineA {
 
@@ -366,6 +370,5 @@ public class MultiBlockMachineA {
                 .register();
     }
 
-    public static void init() {
-    }
+    public static void init() {}
 }

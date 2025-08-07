@@ -4,7 +4,9 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
+
 import net.minecraft.client.resources.language.I18n;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
@@ -51,6 +53,5 @@ public class GTL_Extend_RecipeTypes {
         }
     }
 
-    public static void init() {
-    }
+    public static void init() {}
 }

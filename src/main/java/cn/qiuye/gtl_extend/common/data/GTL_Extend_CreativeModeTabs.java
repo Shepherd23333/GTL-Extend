@@ -3,9 +3,12 @@ package cn.qiuye.gtl_extend.common.data;
 import cn.qiuye.gtl_extend.GTL_Extend;
 import cn.qiuye.gtl_extend.api.registries.GTLEXRegistration;
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlockMachineA;
+
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
-import com.tterrag.registrate.util.entry.RegistryEntry;
+
 import net.minecraft.world.item.CreativeModeTab;
+
+import com.tterrag.registrate.util.entry.RegistryEntry;
 
 public class GTL_Extend_CreativeModeTabs {
 

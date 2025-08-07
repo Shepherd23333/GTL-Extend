@@ -6,10 +6,12 @@ import cn.qiuye.gtl_extend.common.data.GTL_Extend_Elements;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Item;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Ores;
 import cn.qiuye.gtl_extend.data.recipe.*;
+
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;

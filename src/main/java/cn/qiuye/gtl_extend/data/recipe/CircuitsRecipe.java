@@ -2,16 +2,19 @@ package cn.qiuye.gtl_extend.data.recipe;
 
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Item;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
-import com.tterrag.registrate.util.entry.ItemEntry;
+
+import org.gtlcore.gtlcore.utils.Registries;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Item;
-import org.gtlcore.gtlcore.utils.Registries;
 
 import java.util.function.Consumer;
 
 import static cn.qiuye.gtl_extend.common.data.GTL_Extend_Materials.ETERNALBLUEDREAM;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static org.gtlcore.gtlcore.common.data.GTLRecipeTypes.SUPRACHRONAL_ASSEMBLY_LINE_RECIPES;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 public class CircuitsRecipe {
 
@@ -28,7 +31,7 @@ public class CircuitsRecipe {
                     .save(provider);
 
             // 从 MV 开始，逐级生成高阶配方
-            String[] tiers = {"ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv", "uev", "uiv", "uxv", "opv", "max"};
+            String[] tiers = { "ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv", "uev", "uiv", "uxv", "opv", "max" };
             for (int i = 1; i < tiers.length; i++) {
                 String currentTier = tiers[i];
                 String prevTier = tiers[i - 1];

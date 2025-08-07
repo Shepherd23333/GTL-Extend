@@ -2,10 +2,13 @@ package cn.qiuye.gtl_extend.data.recipe;
 
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Materials;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import net.minecraft.data.recipes.FinishedRecipe;
+
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
 import org.gtlcore.gtlcore.utils.Registries;
+
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
+import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
@@ -48,20 +51,20 @@ public class VoidPumpRecipe {
 
     private static void ordinary(Consumer<FinishedRecipe> provider) {
         Object[][] recipes = {
-                {"oil", 1, Oil},
-                {"fluid_hafnium", 2, Hafnium},
-                {"fluid_radon", 3, Radon},
-                {"fluid_deuterium", 4, Deuterium},
-                {"fluid_sulfuric_acid", 5, SulfuricAcid},
-                {"fluid_neon", 6, Neon},
-                {"fluid_krypton", 7, Krypton},
-                {"fluid_xenon", 8, Xenon},
-                {"fluid_coal_gas", 9, CoalGas},
-                {"fluid_hydrochloric_acid", 10, HydrochloricAcid},
-                {"fluid_chlorine", 11, Chlorine},
-                {"fluid_fluorine", 12, Fluorine},
-                {"unknowwater", 13, GTLMaterials.UnknowWater},
-                {"fluid_nitric_acid", 14, NitricAcid}
+                { "oil", 1, Oil },
+                { "fluid_hafnium", 2, Hafnium },
+                { "fluid_radon", 3, Radon },
+                { "fluid_deuterium", 4, Deuterium },
+                { "fluid_sulfuric_acid", 5, SulfuricAcid },
+                { "fluid_neon", 6, Neon },
+                { "fluid_krypton", 7, Krypton },
+                { "fluid_xenon", 8, Xenon },
+                { "fluid_coal_gas", 9, CoalGas },
+                { "fluid_hydrochloric_acid", 10, HydrochloricAcid },
+                { "fluid_chlorine", 11, Chlorine },
+                { "fluid_fluorine", 12, Fluorine },
+                { "unknowwater", 13, GTLMaterials.UnknowWater },
+                { "fluid_nitric_acid", 14, NitricAcid }
         };
 
         for (Object[] recipe : recipes) {

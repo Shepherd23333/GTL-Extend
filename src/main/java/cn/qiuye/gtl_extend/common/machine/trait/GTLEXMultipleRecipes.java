@@ -1,6 +1,9 @@
 package cn.qiuye.gtl_extend.common.machine.trait;
 
 import cn.qiuye.gtl_extend.api.machine.trait.GTLEXRecipeLookup;
+
+import org.gtlcore.gtlcore.api.machine.multiblock.ParallelMachine;
+
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
@@ -12,11 +15,11 @@ import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-import org.gtlcore.gtlcore.api.machine.multiblock.ParallelMachine;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 public class GTLEXMultipleRecipes extends RecipeLogic {
 

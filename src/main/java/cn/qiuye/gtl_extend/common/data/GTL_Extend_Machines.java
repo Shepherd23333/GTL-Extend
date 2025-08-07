@@ -5,11 +5,13 @@ import cn.qiuye.gtl_extend.api.registries.MachinesRegister;
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlockMachineA;
 import cn.qiuye.gtl_extend.common.machine.generator.DragonEggEnergyMachine;
 import cn.qiuye.gtl_extend.common.machine.generator.MagicEnergyMachine;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.client.renderer.machine.SimpleGeneratorMachineRenderer;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+
 import net.minecraft.network.chat.Component;
 
 import static cn.qiuye.gtl_extend.common.data.machines.MultiBlockMachineA.GTL_EX_ADD;

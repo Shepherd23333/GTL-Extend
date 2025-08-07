@@ -2,9 +2,11 @@ package cn.qiuye.gtl_extend.data.recipe;
 
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Materials;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+
+import org.gtlcore.gtlcore.utils.Registries;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
-import org.gtlcore.gtlcore.utils.Registries;
 
 import java.util.function.Consumer;
 
@@ -16,14 +18,14 @@ public class GeneralAE_Recipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         if (GTLExtendConfigHolder.INSTANCE.enableGeneralAEManufacturingMachine) {
-            Object[][] aeCableConfigs = new Object[][]{
+            Object[][] aeCableConfigs = new Object[][] {
                     // 格式: [circuitMeta, 输入物品, 输出物品, 输出数量]
-                    {1, "ae2:quartz_fiber", "ae2:fluix_glass_cable", 16},
-                    {2, "ae2:quartz_fiber", "ae2:fluix_covered_cable", 16},
-                    {3, "ae2:quartz_fiber", "ae2:fluix_smart_cable", 16},
-                    {4, "ae2:quartz_fiber", "ae2:fluix_covered_dense_cable", 16},
-                    {5, "ae2:quartz_fiber", "ae2:fluix_smart_dense_cable", 16},
-                    {1, "ae2:blank_pattern", "ae2:blank_pattern", 8} // 特殊处理
+                    { 1, "ae2:quartz_fiber", "ae2:fluix_glass_cable", 16 },
+                    { 2, "ae2:quartz_fiber", "ae2:fluix_covered_cable", 16 },
+                    { 3, "ae2:quartz_fiber", "ae2:fluix_smart_cable", 16 },
+                    { 4, "ae2:quartz_fiber", "ae2:fluix_covered_dense_cable", 16 },
+                    { 5, "ae2:quartz_fiber", "ae2:fluix_smart_dense_cable", 16 },
+                    { 1, "ae2:blank_pattern", "ae2:blank_pattern", 8 } // 特殊处理
             };
 
             for (Object[] cableConfig : aeCableConfigs) {

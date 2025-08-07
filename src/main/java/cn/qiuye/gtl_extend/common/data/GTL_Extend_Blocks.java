@@ -1,9 +1,9 @@
 package cn.qiuye.gtl_extend.common.data;
 
 import cn.qiuye.gtl_extend.GTL_Extend;
+
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -17,6 +17,9 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import static cn.qiuye.gtl_extend.api.registries.GTLEXRegistration.REGISTRATE;
+
+import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 
 public class GTL_Extend_Blocks {
 
@@ -48,10 +51,10 @@ public class GTL_Extend_Blocks {
      * @return 方块注册对象
      */
     public static BlockEntry<Block> createCasingBlock(
-            String name,
-            ResourceLocation texture,
-            Supplier<Supplier<RenderType>> renderType,
-            NonNullSupplier<? extends Block> baseProperties) {                              // 新增参数：层级标识)
+                                                      String name,
+                                                      ResourceLocation texture,
+                                                      Supplier<Supplier<RenderType>> renderType,
+                                                      NonNullSupplier<? extends Block> baseProperties) {                              // 新增参数：层级标识)
         // {
         BlockEntry<Block> blockEntry = REGISTRATE.block(name, Block::new)
                 .initialProperties(baseProperties)
@@ -85,12 +88,12 @@ public class GTL_Extend_Blocks {
      * @return 方块注册对象
      */
     public static BlockEntry<Block> createCasingBlock(
-            String name,
-            ResourceLocation texture,
-            Supplier<Supplier<RenderType>> renderType,
-            NonNullSupplier<? extends Block> baseProperties,
-            Map<Integer, Supplier<Block>> targetMap,
-            int tier) {
+                                                      String name,
+                                                      ResourceLocation texture,
+                                                      Supplier<Supplier<RenderType>> renderType,
+                                                      NonNullSupplier<? extends Block> baseProperties,
+                                                      Map<Integer, Supplier<Block>> targetMap,
+                                                      int tier) {
         BlockEntry<Block> blockEntry = createCasingBlock(name, texture, renderType, baseProperties);
         targetMap.put(tier, blockEntry);
         return blockEntry;

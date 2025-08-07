@@ -6,6 +6,7 @@ import cn.qiuye.gtl_extend.common.data.GTL_Extend_Machines;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Materials;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_RecipeTypes;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -13,6 +14,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -47,8 +49,7 @@ public class CommonProxy {
         }
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-    }
+    private void commonSetup(final FMLCommonSetupEvent event) {}
 
     protected void clientSetup(final FMLClientSetupEvent event) {}
 
@@ -66,8 +67,7 @@ public class CommonProxy {
         GTL_Extend_RecipeTypes.init();
     }
 
-    private void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType<?>> event) {
-    }
+    private void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeConditionType<?>> event) {}
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         GTL_Extend_Machines.init();

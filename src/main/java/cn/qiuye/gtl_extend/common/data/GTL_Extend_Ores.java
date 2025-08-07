@@ -1,10 +1,12 @@
 package cn.qiuye.gtl_extend.common.data;
 
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
 import com.gregtechceu.gtceu.common.data.GTOres;
+
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 
@@ -25,6 +27,5 @@ public class GTL_Extend_Ores extends GTOres {
         }
     }
 
-    public static void init() {
-    }
+    public static void init() {}
 }

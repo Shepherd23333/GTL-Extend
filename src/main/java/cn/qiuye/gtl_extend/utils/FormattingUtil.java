@@ -1,9 +1,9 @@
 package cn.qiuye.gtl_extend.utils;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("UnnecessaryUnicodeEscape")
 public class FormattingUtil {

@@ -17,6 +17,5 @@ public class Cattle_cattle_machine_MultiBlockStructure {
                 .aisle(Cattle_cattle_machine_Part1.LAYER_007);
     }
 
-    public Cattle_cattle_machine_MultiBlockStructure() {
-    }
+    public Cattle_cattle_machine_MultiBlockStructure() {}
 }

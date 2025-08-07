@@ -31,6 +31,5 @@ public class Platinum_basedProcessingHub_MultiBlockStructure {
                 .aisle(Platinum_basedProcessingHub_Part2.LAYER_021);
     }
 
-    public Platinum_basedProcessingHub_MultiBlockStructure() {
-    }
+    public Platinum_basedProcessingHub_MultiBlockStructure() {}
 }

@@ -113,6 +113,5 @@ public class BlackHoleMatterDecompressor_MultiBlockStructure {
                 .aisle(BlackHoleMatterDecompressor_Part6.LAYER_103);
     }
 
-    public BlackHoleMatterDecompressor_MultiBlockStructure() {
-    }
+    public BlackHoleMatterDecompressor_MultiBlockStructure() {}
 }

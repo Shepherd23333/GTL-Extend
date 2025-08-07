@@ -5,10 +5,11 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.lookup.AbstractMapIngredient;
 import com.gregtechceu.gtceu.api.recipe.lookup.GTRecipeLookup;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.Predicate;
+
+import org.jetbrains.annotations.NotNull;
 
 public class GTLEXRecipeLookup extends GTRecipeLookup {
 

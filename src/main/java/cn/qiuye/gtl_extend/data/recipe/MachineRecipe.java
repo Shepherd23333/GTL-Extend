@@ -4,16 +4,19 @@ import cn.qiuye.gtl_extend.api.registries.GetRegistries;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Item;
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlockMachineA;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+
+import org.gtlcore.gtlcore.common.data.GTLMaterials;
+import org.gtlcore.gtlcore.utils.Registries;
+
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.gtlcore.gtlcore.common.data.GTLMaterials;
-import org.gtlcore.gtlcore.utils.Registries;
 
 import java.util.function.Consumer;
 
@@ -27,15 +30,15 @@ import static org.gtlcore.gtlcore.common.data.GTLRecipeTypes.SUPRACHRONAL_ASSEMB
 public class MachineRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        Object[][] magicEnergyConfigs = new Object[][]{
+        Object[][] magicEnergyConfigs = new Object[][] {
                 // 参数格式: [电压等级, 输出物品所在Mod的命名空间, 电缆材料名]
-                {"lv", "gtceu", "tin", CustomTags.LV_CIRCUITS},
-                {"mv", "gtl_extend", "copper", CustomTags.MV_CIRCUITS},
-                {"hv", "gtl_extend", "gold", CustomTags.HV_CIRCUITS},
-                {"ev", "gtl_extend", "aluminium", CustomTags.EV_CIRCUITS},
-                {"iv", "gtl_extend", "graphene", CustomTags.IV_CIRCUITS},
-                {"luv", "gtl_extend", "niobium_nitride", CustomTags.LuV_CIRCUITS},
-                {"zpm", "gtl_extend", "naquadah", CustomTags.ZPM_CIRCUITS}
+                { "lv", "gtceu", "tin", CustomTags.LV_CIRCUITS },
+                { "mv", "gtl_extend", "copper", CustomTags.MV_CIRCUITS },
+                { "hv", "gtl_extend", "gold", CustomTags.HV_CIRCUITS },
+                { "ev", "gtl_extend", "aluminium", CustomTags.EV_CIRCUITS },
+                { "iv", "gtl_extend", "graphene", CustomTags.IV_CIRCUITS },
+                { "luv", "gtl_extend", "niobium_nitride", CustomTags.LuV_CIRCUITS },
+                { "zpm", "gtl_extend", "naquadah", CustomTags.ZPM_CIRCUITS }
         };
 
         for (Object[] config : magicEnergyConfigs) {

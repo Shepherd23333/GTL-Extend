@@ -1,32 +1,38 @@
 package cn.qiuye.gtl_extend.common.machine.multiblock.electric;
 
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+
+import org.gtlcore.gtlcore.api.machine.multiblock.NoEnergyMultiblockMachine;
+import org.gtlcore.gtlcore.utils.MachineIO;
+
 import com.gregtechceu.gtceu.api.machine.ConditionalSubscriptionHandler;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.hepdd.gtmthings.api.misc.WirelessEnergyManager;
-import com.hepdd.gtmthings.utils.TeamUtil;
+
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
-import org.gtlcore.gtlcore.api.machine.multiblock.NoEnergyMultiblockMachine;
-import org.gtlcore.gtlcore.utils.MachineIO;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import static cn.qiuye.gtl_extend.common.data.GTL_Extend_Materials.ETERNALBLUEDREAM;
+
+import com.hepdd.gtmthings.api.misc.WirelessEnergyManager;
+import com.hepdd.gtmthings.utils.TeamUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -59,7 +65,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
 
     @Nullable
     public GTRecipe recipeModifier(
-            @NotNull GTRecipe recipe) {
+                                   @NotNull GTRecipe recipe) {
         if (this.oc == 0) return null;
         int parallel = calculateParallel(); // 直接调用实例方法
         long euCost = getRecipeEUt(); // 直接调用实例方法
@@ -122,7 +128,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        int[] priorityOrder = {8, 7, 6, 5, 4, 3, 2, 1};
+        int[] priorityOrder = { 8, 7, 6, 5, 4, 3, 2, 1 };
         for (int config : priorityOrder) {
             this.oc = 0; // 通过this访问实例变量
             if (MachineIO.notConsumableCircuit(this, config)) {
