@@ -144,7 +144,7 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
         int ocTimes = calculateOverclockTimes();
         BigInteger parallel = BigInteger.valueOf(getBaseParallel());
         BigInteger eut = longmax.multiply(parallel.pow(ocTimes));
-        return eut.min(longmax).max(MAX);
+        return eut.min(MAX).max(longmax);
     }
 
     // 计算并行（电路编号的8次方，1号特殊处理）

@@ -299,6 +299,12 @@ public class MultiBlockMachineA {
                 .appearanceBlock(HIGH_POWER_CASING)
                 .recipeType(GTL_Extend_RecipeTypes.DIMENSIONALPOWER_RECIPES)
                 .recipeModifier((machine, recipe, params, result) -> ((DimensionalPower) machine).recipeModifier(recipe))
+                .tooltips(Component.literal(TextUtil.full_color("创造一个高维粒子，并从里面获取无限的电量")))
+                .tooltips(Component.literal("这台机器输出巨量的EU，无法使用常规手段提取"))
+                .tooltips(Component.literal("直接向无线电网供电，具体数值可在GUI內查看"))
+                .tooltips(Component.literal(TextUtil.full_color("基础发电Long.MAX_VALUE，最大发电为2的16384次方")))
+                .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                        Component.translatable("gtceu.dimensional_power")))
                 .tooltipBuilder(GTL_EX_ADD)
                 .pattern(definition -> BlackHoleMatterDecompressor_MultiBlockStructure.BLACK_HOLE_DECOMPRESSION
                         .where('~', Predicates.controller(blocks(definition.getBlock())))
