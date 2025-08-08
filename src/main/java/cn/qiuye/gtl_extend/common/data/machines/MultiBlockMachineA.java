@@ -20,6 +20,7 @@ import cn.qiuye.gtl_extend.common.machine.multiblock.steam.GeneralPurposeSteamEn
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
 
 import org.gtlcore.gtlcore.api.pattern.GTLPredicates;
+import org.gtlcore.gtlcore.common.data.GTLMachines;
 import org.gtlcore.gtlcore.common.data.GTLRecipeTypes;
 import org.gtlcore.gtlcore.utils.TextUtil;
 
@@ -58,6 +59,7 @@ public class MultiBlockMachineA {
     public static final MultiblockMachineDefinition PLATINUM_BASE_DPROCESSING_HUB;
     public static final MultiblockMachineDefinition LARGE_VOID_PUMP;
     public static final MultiblockMachineDefinition CATTLE_CATTLE_MACHINE;
+    public static final MultiblockMachineDefinition DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK;
     public static MultiblockMachineDefinition GENERAL_PURPOSE_STEAM_ENGINE;
     public static MultiblockMachineDefinition GENERAL_PURPOSE_AE_PRODUCTION;
 
@@ -368,6 +370,37 @@ public class MultiBlockMachineA {
                 .workableCasingRenderer(GTCEu.id("block/casings/hpca/advanced_computer_casing/back"),
                         GTCEu.id("block/multiblock/cosmos_simulation"), false)
                 .register();
+
+        DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK = GTLEXRegistration.REGISTRATE.multiblock("dimensionally_transcendent_dissolving_tank", WorkableElectricMultiblockMachine::new)
+                .langValue("Dimensionally Transcendent Dissolving Tank")
+                .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                        Component.translatable("gtceu.dissolution_treatment")))
+                .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"))
+                .tooltips(Component.translatable("gtceu.machine.multiple_recipes.tooltip"))
+                .tooltipBuilder(GTL_EX_ADD)
+                .rotationState(RotationState.ALL)
+                .recipeTypes(GTLRecipeTypes.DISSOLUTION_TREATMENT)
+                .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+                .pattern(definition -> GTLMachines.DTPF
+                        .where(" ", Predicates.any())
+                        .where('a', Predicates.controller(Predicates.blocks(definition.get())))
+                        .where('b', Predicates.heatingCoils())
+                        .where('c', Predicates.blocks(GTBlocks.CASING_INVAR_HEATPROOF.get()))
+                        .where('d', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
+                        .where("s", Predicates.blocks(GTBlocks.CASING_PRIMITIVE_BRICKS.get()))
+                        .where('e', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get())
+                                .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(2).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(2).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(2).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(6).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(2).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                        .build())
+                        .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_gas_turbine"))
+                .register();
+
     }
 
     public static void init() {}

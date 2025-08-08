@@ -3,7 +3,7 @@
   "loader": "forge:obj",
   "model": "gtl_extend:models/obj/black_hole.obj",
   "textures": {
-    "texture0": "gtl_extend:models/obj/black_holer",
-    "particle": "gtl_extend:models/obj/black_hole"
+    "texture0": "gtl_extend:block/obj/black_hole",
+    "particle": "gtl_extend:block/obj/black_hole"
   }
 }

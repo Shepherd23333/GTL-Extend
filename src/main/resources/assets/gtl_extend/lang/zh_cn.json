@@ -6,6 +6,7 @@
   "config.gtl_extend.option.enableGeneralPurposeSteamEngine": "开启通用蒸汽机（修改后请退出重进）",
   "config.gtl_extend.option.enableGeneralAEManufacturingMachine": "开启通用AE制造机（修改后请退出重进）",
   "gtl_extend.registry.add": "由GregTech Leisure-Extend添加",
+  "block.gtl_extend.dimensionally_transcendent_dissolving_tank": "超维度溶解罐",
   "itemGroup.gtl_extend.machines_item": "GTL_EX 机器",
   "itemGroup.gtl_extend.blocks_item": "GTL_EX 方块",
   "itemGroup.gtl_extend.gtl_ex_gt_item": "GTL_EX 物品",
