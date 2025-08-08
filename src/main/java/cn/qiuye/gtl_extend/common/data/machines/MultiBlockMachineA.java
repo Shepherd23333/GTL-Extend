@@ -398,7 +398,7 @@ public class MultiBlockMachineA {
                                 .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
                                 .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                         .build())
-                        .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_gas_turbine"))
+                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_gas_turbine"))
                 .register();
 
     }
