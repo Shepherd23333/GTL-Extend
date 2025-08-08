@@ -12,10 +12,7 @@ import cn.qiuye.gtl_extend.common.data.machines.MultiBlock.Cattle_cattle_machine
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlock.MultiBlockStructure;
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlock.Platinum_basedProcessingHub.Platinum_basedProcessingHub_MultiBlockStructure;
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlock.Void_Pump.Void_Pump_MultiBlockStructure;
-import cn.qiuye.gtl_extend.common.machine.multiblock.electric.BlackHoleMatterDecompressor;
-import cn.qiuye.gtl_extend.common.machine.multiblock.electric.CRTierCasingMachine;
-import cn.qiuye.gtl_extend.common.machine.multiblock.electric.DimensionalPower;
-import cn.qiuye.gtl_extend.common.machine.multiblock.electric.GTLEXSuperfluidGeneralEnergyFurnaceMachine;
+import cn.qiuye.gtl_extend.common.machine.multiblock.electric.*;
 import cn.qiuye.gtl_extend.common.machine.multiblock.steam.GeneralPurposeSteamEngine;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
 
@@ -122,7 +119,7 @@ public class MultiBlockMachineA {
                         return recipe1;
                     })
                     .tooltips(Component.literal(TextUtil.full_color("暴力.....")))
-                    .tooltips(Component.literal(TextUtil.full_color("设置所有配方时间为1t,自带512并行")))
+                    .tooltips(Component.literal(TextUtil.full_color("设置所有配方时间为1t,自带4096并行")))
                     .tooltips(Component.translatable("gtceu.machine.available_recipe_map_14.tooltip",
                             Component.translatable("gtceu.lava_furnace"),
                             Component.translatable("gtceu.forge_hammer"),
@@ -229,7 +226,7 @@ public class MultiBlockMachineA {
                 })
                 .tooltips(Component.literal(TextUtil.full_color("最大并行数：int")))
                 .tooltips(Component.literal(TextUtil.full_color("26个线圈就可以让你获得无与伦比的并行和跨配方并行")))
-                .tooltips(Component.literal(TextUtil.full_color("所有配方都为1t")))
+                .tooltips(Component.literal(TextUtil.full_color("所有配方都为1s")))
                 .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"))
                 .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
                 .tooltips(Component.translatable("gtceu.machine.available_recipe_map_3.tooltip",
@@ -371,23 +368,25 @@ public class MultiBlockMachineA {
                         GTCEu.id("block/multiblock/cosmos_simulation"), false)
                 .register();
 
-        DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK = GTLEXRegistration.REGISTRATE.multiblock("dimensionally_transcendent_dissolving_tank", WorkableElectricMultiblockMachine::new)
+        DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK = GTLEXRegistration.REGISTRATE.multiblock("dimensionally_transcendent_dissolving_tank", GTLEXDimensionallyTranscendentDissolvingTank::new)
                 .langValue("Dimensionally Transcendent Dissolving Tank")
+                .rotationState(RotationState.NON_Y_AXIS)
+                .recipeTypes(GTLRecipeTypes.DISSOLUTION_TREATMENT)
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+                .appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
                 .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
                         Component.translatable("gtceu.dissolution_treatment")))
                 .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"))
                 .tooltips(Component.translatable("gtceu.machine.multiple_recipes.tooltip"))
                 .tooltipBuilder(GTL_EX_ADD)
-                .rotationState(RotationState.ALL)
-                .recipeTypes(GTLRecipeTypes.DISSOLUTION_TREATMENT)
-                .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
                 .pattern(definition -> GTLMachines.DTPF
                         .where(" ", Predicates.any())
                         .where('a', Predicates.controller(Predicates.blocks(definition.get())))
-                        .where('b', Predicates.heatingCoils())
-                        .where('c', Predicates.blocks(GTBlocks.CASING_INVAR_HEATPROOF.get()))
+                        .where('c', Predicates.heatingCoils())
+                        .where('b', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
                         .where('d', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
-                        .where("s", Predicates.blocks(GTBlocks.CASING_PRIMITIVE_BRICKS.get()))
+                        .where("s", Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
                         .where('e', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get())
                                 .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2).setPreviewCount(1))
                                 .or(Predicates.abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(2).setPreviewCount(1))
@@ -398,7 +397,7 @@ public class MultiBlockMachineA {
                                 .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1).setPreviewCount(1))
                                 .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                         .build())
-                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_gas_turbine"))
+                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"), GTCEu.id("block/multiblock/generator/large_gas_turbine"))
                 .register();
 
     }

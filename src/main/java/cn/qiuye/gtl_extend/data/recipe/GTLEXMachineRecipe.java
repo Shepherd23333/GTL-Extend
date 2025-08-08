@@ -27,7 +27,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static org.gtlcore.gtlcore.common.data.GTLRecipeTypes.SUPRACHRONAL_ASSEMBLY_LINE_RECIPES;
 
-public class MachineRecipe {
+public class GTLEXMachineRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         Object[][] magicEnergyConfigs = new Object[][] {

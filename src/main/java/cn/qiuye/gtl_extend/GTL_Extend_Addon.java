@@ -57,7 +57,7 @@ public class GTL_Extend_Addon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        MachineRecipe.init(provider);
+        GTLEXMachineRecipe.init(provider);
         CircuitsRecipe.init(provider);
         GeneralAE_Recipe.init(provider);
         VoidPumpRecipe.init(provider);
