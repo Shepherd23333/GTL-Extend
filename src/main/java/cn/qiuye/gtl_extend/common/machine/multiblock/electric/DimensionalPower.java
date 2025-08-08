@@ -59,7 +59,7 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        int[] priorityOrder = { 8, 7, 6, 5, 4, 3, 2, 1 };
+        int[] priorityOrder = { 4, 3, 2, 1 };
         for (int config : priorityOrder) {
             this.oc = 0; // 通过this访问实例变量
             if (MachineIO.notConsumableCircuit(this, config)) {

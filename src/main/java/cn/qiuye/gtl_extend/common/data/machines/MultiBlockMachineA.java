@@ -383,7 +383,7 @@ public class MultiBlockMachineA {
                 .pattern(definition -> GTLMachines.DTPF
                         .where(" ", Predicates.any())
                         .where('a', Predicates.controller(Predicates.blocks(definition.get())))
-                        .where('c', Predicates.heatingCoils())
+                        .where('c', Predicates.blocks(GCyMBlocks.MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
                         .where('b', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
                         .where('d', Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
                         .where("s", Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST.get()))
