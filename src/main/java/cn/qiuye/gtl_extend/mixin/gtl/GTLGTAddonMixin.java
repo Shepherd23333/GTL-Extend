@@ -1,13 +1,15 @@
 package cn.qiuye.gtl_extend.mixin.gtl;
 
-import net.minecraft.data.recipes.FinishedRecipe;
 import org.gtlcore.gtlcore.GTLGTAddon;
+
+import net.minecraft.data.recipes.FinishedRecipe;
+
+import java.util.function.Consumer;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.function.Consumer;
 
 @Mixin(GTLGTAddon.class)
 public class GTLGTAddonMixin {
@@ -17,8 +19,5 @@ public class GTLGTAddonMixin {
             at = @At("HEAD"),
             remap = false,
             require = 1)
-    private void injectCustomRecipes(Consumer<FinishedRecipe> provider, CallbackInfo ci) {
-
-    }
-
+    private void injectCustomRecipes(Consumer<FinishedRecipe> provider, CallbackInfo ci) {}
 }
