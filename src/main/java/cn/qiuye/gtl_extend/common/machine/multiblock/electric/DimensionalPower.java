@@ -1,5 +1,6 @@
 package cn.qiuye.gtl_extend.common.machine.multiblock.electric;
 
+import cn.qiuye.gtl_extend.utils.NumberUtils;
 import org.gtlcore.gtlcore.api.machine.multiblock.NoEnergyMultiblockMachine;
 import org.gtlcore.gtlcore.utils.MachineIO;
 
@@ -167,14 +168,14 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
         if (!this.isFormed) return;
         GTRecipe r = getRecipeLogic().getLastRecipe();
         if (r != null) {
-            textList.add(Component.translatable("gtceu.recipe.eu_inverted", FormattingUtil.formatNumbers(eut)));
+            textList.add(Component.translatable("gtceu.recipe.eu_inverted", NumberUtils.formatBigIntegerNumberOrSic(eut)));
         }
         // 用户无线电网信息（公共显示部分）
         if (userid != null) {
             textList.add(Component.translatable("gtmthings.machine.wireless_energy_monitor.tooltip.0",
                     TeamUtil.GetName(getLevel(), userid)));
             textList.add(Component.translatable("gtmthings.machine.wireless_energy_monitor.tooltip.1",
-                    FormattingUtil.formatNumbers(WirelessEnergyManager.getUserEU(userid))));
+                    NumberUtils.formatBigIntegerNumberOrSic(WirelessEnergyManager.getUserEU(userid))));
         }
         textList.add(Component.translatable("gtl_extend_machine_circuit",
                 oc,  // 直接显示原始电路编号
