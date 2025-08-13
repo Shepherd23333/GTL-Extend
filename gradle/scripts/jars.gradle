@@ -1,9 +1,30 @@
+tasks.register('slimJar', Jar) {
+    dependsOn("classes")
+    archiveClassifier = "dev-slim"
+    from sourceSets.main.output
+}
+
+obfuscation {
+    reobfuscate(tasks.named('slimJar'), sourceSets.main) {
+        archiveClassifier = "slim"
+    }
+}
+
+java {
+    artifacts.archives(reobfSlimJar)
+    withSourcesJar()
+}
+
+jar.archiveClassifier = "dev"
+
 base {
     archivesName = mod_id
 }
 
 afterEvaluate {
+    reobfJar.archiveClassifier = ""
     tasks.withType(org.gradle.jvm.tasks.Jar).configureEach {
+        destinationDirectory = file('build/libs/')
         manifest.attributes([
                 'MixinConfigs': "${mod_id}.mixins.json",
                 'Specification-Title': project.name,
