@@ -115,7 +115,7 @@ public class MultiBlockMachineA {
                     .recipeModifier((machine, recipe, params, result) -> {
                         GTRecipe recipe1 = recipe.copy();
                         recipe1.duration = 1;
-                        recipe1 = GTRecipeModifiers.fastParallel(machine, recipe1, 512, false).getFirst();
+                        recipe1 = GTRecipeModifiers.fastParallel(machine, recipe1, 4096, false).getFirst();
                         return recipe1;
                     })
                     .tooltips(Component.literal(TextUtil.full_color("暴力.....")))
