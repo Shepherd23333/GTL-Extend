@@ -57,99 +57,96 @@ public class MultiBlockMachineA {
     public static final MultiblockMachineDefinition LARGE_VOID_PUMP;
     public static final MultiblockMachineDefinition CATTLE_CATTLE_MACHINE;
     public static final MultiblockMachineDefinition DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK;
-    public static MultiblockMachineDefinition GENERAL_PURPOSE_STEAM_ENGINE;
-    public static MultiblockMachineDefinition GENERAL_PURPOSE_AE_PRODUCTION;
+    public static final MultiblockMachineDefinition GENERAL_PURPOSE_STEAM_ENGINE;
+    public static final MultiblockMachineDefinition GENERAL_PURPOSE_AE_PRODUCTION;
 
     static {
         GTLEXRegistration.REGISTRATE.creativeModeTab(() -> GTL_Extend_CreativeModeTabs.MACHINES_ITEM);
     }
 
     static {
-        if (GTLExtendConfigHolder.INSTANCE.enableGeneralAEManufacturingMachine) {
-            GENERAL_PURPOSE_AE_PRODUCTION = GTLEXRegistration.REGISTRATE.multiblock("general_ae_manufacturing_machine", WorkableElectricMultiblockMachine::new)
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .appearanceBlock(() -> GetRegistries.getBlock("ae2:sky_stone_block"))
-                    .recipeType(GTL_Extend_RecipeTypes.GENERAL_PURPOSE_AE_PRODUCTION_RECIPES)
-                    .tooltips(Component.literal(TextUtil.full_color("方便的生产一些AE的物品")))
-                    .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                            Component.translatable("gtceu.general_ae_manufacturing_machine")))
-                    .tooltipBuilder(GTL_EX_ADD)
-                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-                    .pattern(definition -> MultiBlockStructure.GENERAL_PURPOSE_AE_PRODUCTION
-                            .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                            .where("C", Predicates.blocks(GetRegistries.getBlock("ae2:quartz_wall")))
-                            .where("D", Predicates.blocks(GetRegistries.getBlock("ae2:sky_stone_block")))
-                            .where("F", Predicates.blocks(GetRegistries.getBlock("minecraft:anvil")))
-                            .where("E", Predicates.blocks(GetRegistries.getBlock("ae2:fluix_block")))
-                            .where("A", Predicates.blocks(GetRegistries.getBlock("ae2:sky_stone_block"))
-                                    .setMinGlobalLimited(10)
-                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2)))
-                            .build())
-                    .workableCasingRenderer(AppEng.makeId("block/sky_stone_block"),
-                            GTCEu.id("block/multiblock/fusion_reactor"))
-                    .register();
-        }
-        if (GTLExtendConfigHolder.INSTANCE.enableGeneralPurposeSteamEngine) {
-            GENERAL_PURPOSE_STEAM_ENGINE = GTLEXRegistration.REGISTRATE.multiblock("general_purpose_steam_engine", (holder) -> new GeneralPurposeSteamEngine(holder, 4096))
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(GTLRecipeTypes.LAVA_FURNACE_RECIPES)
-                    .recipeType(GTRecipeTypes.FORGE_HAMMER_RECIPES)
-                    .recipeType(GTRecipeTypes.COMPRESSOR_RECIPES)
-                    .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
-                    .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
-                    .recipeType(GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES)
-                    .recipeType(GTRecipeTypes.MIXER_RECIPES)
-                    .recipeType(GTRecipeTypes.CENTRIFUGE_RECIPES)
-                    .recipeType(GTRecipeTypes.THERMAL_CENTRIFUGE_RECIPES)
-                    .recipeType(GTRecipeTypes.CHEMICAL_BATH_RECIPES)
-                    .recipeType(GTRecipeTypes.ORE_WASHER_RECIPES)
-                    .recipeType(GTRecipeTypes.LARGE_BOILER_RECIPES)
-                    .recipeType(GTRecipeTypes.FURNACE_RECIPES)
-                    .recipeType(GTRecipeTypes.EXTRACTOR_RECIPES)
-                    .appearanceBlock(() -> GetRegistries.getBlock("gtceu:steam_machine_casing"))
-                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-                    .recipeModifier((machine, recipe, params, result) -> {
-                        GTRecipe recipe1 = recipe.copy();
-                        recipe1.duration = 1;
-                        recipe1 = GTRecipeModifiers.fastParallel(machine, recipe1, 4096, false).getFirst();
-                        return recipe1;
-                    })
-                    .tooltips(Component.literal(TextUtil.full_color("暴力.....")))
-                    .tooltips(Component.literal(TextUtil.full_color("设置所有配方时间为1t,自带4096并行")))
-                    .tooltips(Component.translatable("gtceu.machine.available_recipe_map_14.tooltip",
-                            Component.translatable("gtceu.lava_furnace"),
-                            Component.translatable("gtceu.forge_hammer"),
-                            Component.translatable("gtceu.compressor"),
-                            Component.translatable("gtceu.alloy_smelter"),
-                            Component.translatable("gtceu.macerator"),
-                            Component.translatable("gtceu.circuit_assembler"),
-                            Component.translatable("gtceu.mixer"),
-                            Component.translatable("gtceu.centrifuge"),
-                            Component.translatable("gtceu.thermal_centrifuge"),
-                            Component.translatable("gtceu.chemical_bath"),
-                            Component.translatable("gtceu.ore_washer"),
-                            Component.translatable("gtceu.large_boiler"),
-                            Component.translatable("gtceu.electric_furnace"),
-                            Component.translatable("gtceu.extractor")))
-                    .tooltipBuilder(GTL_EX_ADD)
-                    .pattern(definition -> MultiBlockStructure.GENERAL_PURPOSE_STEAM_ENGINE
-                            .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                            .where("B", Predicates.blocks(GTL_Extend_Blocks.VOID_WORLD_BLOCK.get()))
-                            .where("A", Predicates.blocks(GetRegistries.getBlock("gtceu:steam_machine_casing"))
-                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
-                            .build())
-                    .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                            GTCEu.id("block/multiblock/steam_oven"))
-                    .register();
-        }
+        GENERAL_PURPOSE_AE_PRODUCTION = GTLExtendConfigHolder.INSTANCE.enableGeneralAEManufacturingMachine ? GTLEXRegistration.REGISTRATE.multiblock("general_ae_manufacturing_machine", WorkableElectricMultiblockMachine::new)
+                .rotationState(RotationState.NON_Y_AXIS)
+                .appearanceBlock(() -> GetRegistries.getBlock("ae2:sky_stone_block"))
+                .recipeType(GTL_Extend_RecipeTypes.GENERAL_PURPOSE_AE_PRODUCTION_RECIPES)
+                .tooltips(Component.literal(TextUtil.full_color("方便的生产一些AE的物品")))
+                .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                        Component.translatable("gtceu.general_ae_manufacturing_machine")))
+                .tooltipBuilder(GTL_EX_ADD)
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+                .pattern(definition -> MultiBlockStructure.GENERAL_PURPOSE_AE_PRODUCTION
+                        .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                        .where("C", Predicates.blocks(GetRegistries.getBlock("ae2:quartz_wall")))
+                        .where("D", Predicates.blocks(GetRegistries.getBlock("ae2:sky_stone_block")))
+                        .where("F", Predicates.blocks(GetRegistries.getBlock("minecraft:anvil")))
+                        .where("E", Predicates.blocks(GetRegistries.getBlock("ae2:fluix_block")))
+                        .where("A", Predicates.blocks(GetRegistries.getBlock("ae2:sky_stone_block"))
+                                .setMinGlobalLimited(10)
+                                .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
+                                .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2)))
+                        .build())
+                .workableCasingRenderer(AppEng.makeId("block/sky_stone_block"),
+                        GTCEu.id("block/multiblock/fusion_reactor"))
+                .register() : null;
+
+        GENERAL_PURPOSE_STEAM_ENGINE = GTLExtendConfigHolder.INSTANCE.enableGeneralPurposeSteamEngine ? GTLEXRegistration.REGISTRATE.multiblock("general_purpose_steam_engine", (holder) -> new GeneralPurposeSteamEngine(holder, 4096))
+                .rotationState(RotationState.NON_Y_AXIS)
+                .recipeType(GTLRecipeTypes.LAVA_FURNACE_RECIPES)
+                .recipeType(GTRecipeTypes.FORGE_HAMMER_RECIPES)
+                .recipeType(GTRecipeTypes.COMPRESSOR_RECIPES)
+                .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+                .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+                .recipeType(GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES)
+                .recipeType(GTRecipeTypes.MIXER_RECIPES)
+                .recipeType(GTRecipeTypes.CENTRIFUGE_RECIPES)
+                .recipeType(GTRecipeTypes.THERMAL_CENTRIFUGE_RECIPES)
+                .recipeType(GTRecipeTypes.CHEMICAL_BATH_RECIPES)
+                .recipeType(GTRecipeTypes.ORE_WASHER_RECIPES)
+                .recipeType(GTRecipeTypes.LARGE_BOILER_RECIPES)
+                .recipeType(GTRecipeTypes.FURNACE_RECIPES)
+                .recipeType(GTRecipeTypes.EXTRACTOR_RECIPES)
+                .appearanceBlock(() -> GetRegistries.getBlock("gtceu:steam_machine_casing"))
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+                .recipeModifier((machine, recipe, params, result) -> {
+                    GTRecipe recipe1 = recipe.copy();
+                    recipe1.duration = 1;
+                    recipe1 = GTRecipeModifiers.fastParallel(machine, recipe1, 4096, false).getFirst();
+                    return recipe1;
+                })
+                .tooltips(Component.literal(TextUtil.full_color("暴力.....")))
+                .tooltips(Component.literal(TextUtil.full_color("设置所有配方时间为1t,自带4096并行")))
+                .tooltips(Component.translatable("gtceu.machine.available_recipe_map_14.tooltip",
+                        Component.translatable("gtceu.lava_furnace"),
+                        Component.translatable("gtceu.forge_hammer"),
+                        Component.translatable("gtceu.compressor"),
+                        Component.translatable("gtceu.alloy_smelter"),
+                        Component.translatable("gtceu.macerator"),
+                        Component.translatable("gtceu.circuit_assembler"),
+                        Component.translatable("gtceu.mixer"),
+                        Component.translatable("gtceu.centrifuge"),
+                        Component.translatable("gtceu.thermal_centrifuge"),
+                        Component.translatable("gtceu.chemical_bath"),
+                        Component.translatable("gtceu.ore_washer"),
+                        Component.translatable("gtceu.large_boiler"),
+                        Component.translatable("gtceu.electric_furnace"),
+                        Component.translatable("gtceu.extractor")))
+                .tooltipBuilder(GTL_EX_ADD)
+                .pattern(definition -> MultiBlockStructure.GENERAL_PURPOSE_STEAM_ENGINE
+                        .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                        .where("B", Predicates.blocks(GTL_Extend_Blocks.VOID_WORLD_BLOCK.get()))
+                        .where("A", Predicates.blocks(GetRegistries.getBlock("gtceu:steam_machine_casing"))
+                                .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(1))
+                                .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1))
+                                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1))
+                                .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(1))
+                                .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                        .build())
+                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                        GTCEu.id("block/multiblock/steam_oven"))
+                .register() : null;
 
         LARGE_VOID_PUMP = GTLEXRegistration.REGISTRATE.multiblock("large_void_pump", (holder) -> new CRTierCasingMachine(holder, "CRTier"))
                 .rotationState(RotationState.NON_Y_AXIS)
