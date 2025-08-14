@@ -1,8 +1,7 @@
 package cn.qiuye.gtl_extend.common.machine.multiblock.electric;
 
-import cn.qiuye.gtl_extend.common.machine.trait.GTLEXMultipleRecipes;
-
 import org.gtlcore.gtlcore.api.machine.multiblock.ParallelMachine;
+import org.gtlcore.gtlcore.common.machine.trait.MultipleRecipesLogic;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -16,15 +15,17 @@ public class GTLEXSuperfluidGeneralEnergyFurnaceMachine extends WorkableElectric
         super(holder, args);
     }
 
-    public @NotNull RecipeLogic createRecipeLogic(@NotNull Object @NotNull... args) {
-        return new GTLEXMultipleRecipes(this);
-    }
-
-    public @NotNull GTLEXMultipleRecipes getRecipeLogic() {
-        return (GTLEXMultipleRecipes) super.getRecipeLogic();
-    }
-
     @Override
+    protected @NotNull RecipeLogic createRecipeLogic(Object @NotNull... args) {
+        return new MultipleRecipesLogic(this);
+    }
+
+    @NotNull
+    @Override
+    public MultipleRecipesLogic getRecipeLogic() {
+        return (MultipleRecipesLogic) super.getRecipeLogic();
+    }
+
     public int getMaxParallel() {
         return Integer.MAX_VALUE;
     }
