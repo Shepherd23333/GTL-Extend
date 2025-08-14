@@ -7,8 +7,6 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 
-import static cn.qiuye.gtl_extend.common.data.GTL_Extend_RecipeModifiers.getHatchParallel;
-
 import org.jetbrains.annotations.NotNull;
 
 public class GTLEXDimensionallyTranscendentDissolvingTank extends WorkableElectricMultiblockMachine implements ParallelMachine {
@@ -30,6 +28,6 @@ public class GTLEXDimensionallyTranscendentDissolvingTank extends WorkableElectr
 
     @Override
     public int getMaxParallel() {
-        return getHatchParallel(this, Integer.MAX_VALUE);
+        return Integer.MAX_VALUE;
     }
 }

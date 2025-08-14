@@ -43,7 +43,7 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
     private final BigInteger longmax = BigInteger.valueOf(Long.MAX_VALUE);
     protected ConditionalSubscriptionHandler machineStorage;
     BigInteger two = BigInteger.valueOf(2);
-    private final BigInteger MAX = two.pow(16384);
+    private final BigInteger MAX = two.pow(4194304);
     @Persisted
     @Nullable
     private UUID userid;
@@ -60,25 +60,13 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        int[] priorityOrder = { 4, 3, 2, 1 };
+        int[] priorityOrder = { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
         for (int config : priorityOrder) {
-            this.oc = 0; // 通过this访问实例变量
             if (MachineIO.notConsumableCircuit(this, config)) {
                 this.oc = config;
                 return;
             }
         }
-    }
-
-    private double getPowerMultiplier(int circuitConfig) {
-        // 明确倍率规则：电路编号限制到4，但显示仍用原始值
-        int effectiveConfig = Math.min(circuitConfig, 4);
-        return switch (effectiveConfig) {
-            case 2 -> 32.0;
-            case 3 -> 1024.0;
-            case 4 -> 32768.0;
-            default -> 1.0;
-        };
     }
 
     @Override
@@ -138,16 +126,25 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
     }
 
     // 获取超频次数（电路配置映射）
-    private int calculateOverclockTimes() {
-        return switch (Math.min(oc, 4)) {
-            case 3 -> 2;
-            case 4 -> 3;
-            default -> 1;
+    private int calculateOverclockTimes(int circuitConfig) {
+        return switch (Math.min(circuitConfig, 12)) {
+            case 2 -> 4;
+            case 3 -> 8;
+            case 4 -> 16;
+            case 5 -> 32;
+            case 6 -> 64;
+            case 7 -> 128;
+            case 8 -> 256;
+            case 9 -> 512;
+            case 10 -> 1024;
+            case 11 -> 32768;
+            case 12 -> 65536;
+            default -> 2;
         };
     }
 
     private BigInteger outEUt() {
-        int ocTimes = calculateOverclockTimes();
+        int ocTimes = calculateOverclockTimes(oc);
         BigInteger parallel = BigInteger.valueOf(getBaseParallel());
         BigInteger eut = longmax.multiply(parallel.pow(ocTimes));
         return eut.min(MAX).max(longmax);
@@ -166,10 +163,6 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (!this.isFormed) return;
-        GTRecipe r = getRecipeLogic().getLastRecipe();
-        if (r != null) {
-            textList.add(Component.translatable("gtceu.recipe.eu_inverted", NumberUtils.formatBigIntegerNumberOrSic(eut)));
-        }
         // 用户无线电网信息（公共显示部分）
         if (userid != null) {
             textList.add(Component.translatable("gtmthings.machine.wireless_energy_monitor.tooltip.0",
@@ -179,7 +172,7 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
         }
         textList.add(Component.translatable("gtl_extend_machine_circuit",
                 oc,  // 直接显示原始电路编号
-                getPowerMultiplier(oc) // 仅计算倍率
+                calculateOverclockTimes(oc) // 仅计算倍率
         ));
     }
 }

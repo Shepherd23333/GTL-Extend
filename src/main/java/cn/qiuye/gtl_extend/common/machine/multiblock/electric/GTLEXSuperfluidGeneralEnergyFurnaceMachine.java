@@ -26,6 +26,7 @@ public class GTLEXSuperfluidGeneralEnergyFurnaceMachine extends WorkableElectric
         return (MultipleRecipesLogic) super.getRecipeLogic();
     }
 
+    @Override
     public int getMaxParallel() {
         return Integer.MAX_VALUE;
     }
