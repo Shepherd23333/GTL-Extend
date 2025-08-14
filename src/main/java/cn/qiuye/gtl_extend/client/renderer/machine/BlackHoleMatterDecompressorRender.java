@@ -64,7 +64,7 @@ public class BlackHoleMatterDecompressorRender extends WorkableCasingMachineRend
                 machine.isActive()) {
             float tick = machine.getOffsetTimer() + partialTicks;
             adjustPositionByFacing(machine.getFrontFacing(), poseStack);
-            renderBlackHole(tick, poseStack, buffer);
+            // renderBlackHole(tick, poseStack, buffer);
             renderOuterSpaceShell(poseStack, buffer);
             poseStack.popPose();
         }
@@ -84,7 +84,7 @@ public class BlackHoleMatterDecompressorRender extends WorkableCasingMachineRend
     @OnlyIn(Dist.CLIENT)
     public void onAdditionalModel(Consumer<ResourceLocation> registry) {
         super.onAdditionalModel(registry);
-        registry.accept(BLACKHOLE_MODEL);
+        // registry.accept(BLACKHOLE_MODEL);
     }
 
     /**

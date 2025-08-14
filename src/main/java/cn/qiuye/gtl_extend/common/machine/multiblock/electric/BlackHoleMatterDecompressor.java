@@ -1,6 +1,7 @@
 package cn.qiuye.gtl_extend.common.machine.multiblock.electric;
 
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
+import cn.qiuye.gtl_extend.utils.NumberUtils;
 
 import org.gtlcore.gtlcore.api.machine.multiblock.NoEnergyMultiblockMachine;
 import org.gtlcore.gtlcore.utils.MachineIO;
@@ -200,7 +201,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
                 textList.add(Component.translatable("gtmthings.machine.wireless_energy_monitor.tooltip.0",
                         TeamUtil.GetName(getLevel(), userId)));
                 textList.add(Component.translatable("gtmthings.machine.wireless_energy_monitor.tooltip.1",
-                        FormattingUtil.formatNumbers(WirelessEnergyManager.getUserEU(userId))));
+                        NumberUtils.formatBigIntegerNumberOrSic(WirelessEnergyManager.getUserEU(userId))));
             }
             // 公共信息
             textList.add(Component.literal("启动耗能：" + FormattingUtil.formatNumbers(getRecipeEUt()) + "EU"));

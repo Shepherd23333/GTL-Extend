@@ -32,7 +32,6 @@ import org.jetbrains.annotations.Nullable;
 public class DimensionalPowerRender extends WorkableCasingMachineRenderer implements IControllerRenderer {
 
     private static final ResourceLocation SPACE_MODEL = GTL_Extend.id("obj/space");
-    // private static final ResourceLocation BLACKHOLE_MODEL = GTL_Extend.id("obj/");
 
     public DimensionalPowerRender() {
         super(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/cosmos_simulation"));
@@ -60,7 +59,6 @@ public class DimensionalPowerRender extends WorkableCasingMachineRenderer implem
                 machine.isActive()) {
             float tick = machine.getOffsetTimer() + partialTicks;
             adjustPositionByFacing(machine.getFrontFacing(), poseStack);
-            // renderBlackHole(tick, poseStack, buffer);
             renderOuterSpaceShell(poseStack, buffer);
             poseStack.popPose();
         }
@@ -71,10 +69,6 @@ public class DimensionalPowerRender extends WorkableCasingMachineRenderer implem
     private void adjustPositionByFacing(Direction facing, PoseStack poseStack) {
         Domain.Facing(facing, poseStack);
     }
-
-    // private static void renderBlackHole(float tick, PoseStack poseStack, MultiBufferSource buffer) {
-    // pushPose(tick, poseStack, buffer, BLACKHOLE_MODEL);
-    // }
 
     private void renderOuterSpaceShell(PoseStack poseStack, MultiBufferSource buffer) {
         Domain.SpaceShell(poseStack, buffer, SPACE_MODEL);

@@ -1,5 +1,7 @@
 package cn.qiuye.gtl_extend.mixin.gtl;
 
+import cn.qiuye.gtl_extend.data.recipe.*;
+
 import org.gtlcore.gtlcore.GTLGTAddon;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -19,5 +21,16 @@ public class GTLGTAddonMixin {
             at = @At("HEAD"),
             remap = false,
             require = 1)
-    private void injectCustomRecipes(Consumer<FinishedRecipe> provider, CallbackInfo ci) {}
+    private void injectCustomRecipes(Consumer<FinishedRecipe> provider, CallbackInfo ci) {
+        GTLEXMachineRecipe.init(provider);
+        CircuitsRecipe.init(provider);
+        GeneralAE_Recipe.init(provider);
+        VoidPumpRecipe.init(provider);
+        CattleCattleRecipe.init(provider);
+        ElectricImplosionCompressorRecipe.init(provider);
+        OneStopPlatinumTreatmentRecipe.init(provider);
+        AdvFormulationLimitsRecipe.init(provider);
+        HorizonMatterDecompression.init(provider);
+        DimensionalPowerRecipe.init(provider);
+    }
 }
