@@ -181,7 +181,8 @@ public class MultiBlockMachineA {
                 .rotationState(RotationState.NON_Y_AXIS)
                 .appearanceBlock(HIGH_POWER_CASING)
                 .recipeType(GTL_Extend_RecipeTypes.CATTLE_CATTLE_MACHINE_RECIPES)
-                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
                 .tooltips(Component.literal(TextUtil.full_color("撸管太多导致出现了奇怪的现象")))
                 .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
                         Component.translatable("gtceu.cattle_cattle_machine")))
