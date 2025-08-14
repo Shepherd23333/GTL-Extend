@@ -1,13 +1,19 @@
 package cn.qiuye.gtl_extend.data.recipe;
 
 import cn.qiuye.gtl_extend.api.registries.GetRegistries;
+import cn.qiuye.gtl_extend.common.data.GTL_Extend_Blocks;
 import cn.qiuye.gtl_extend.common.data.GTL_Extend_Item;
 import cn.qiuye.gtl_extend.common.data.machines.MultiBlockMachineA;
 import cn.qiuye.gtl_extend.config.GTLExtendConfigHolder;
 
+import org.gtlcore.gtlcore.api.data.tag.GTLTagPrefix;
+import org.gtlcore.gtlcore.common.data.GTLItems;
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
+import org.gtlcore.gtlcore.common.data.machines.AdvancedMultiBlockMachine;
+import org.gtlcore.gtlcore.common.data.machines.GeneratorMachine;
 import org.gtlcore.gtlcore.utils.Registries;
 
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -149,6 +155,66 @@ public class GTLEXMachineRecipe {
                 .duration(4400)
                 .EUt(V[MAX] * 16384)
                 .stationResearch(b -> b.researchStack(Registries.getItem("gtladditions:arcanic_astrograph").getDefaultInstance())
+                        .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
+                        .EUt(VA[MAX])
+                        .CWUt(16384))
+                .save(provider);
+
+        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("dimensionalpower")
+                .inputItems(GeneratorMachine.ANNIHILATE_GENERATOR, 4)
+                .inputItems(GeneratorMachine.ADVANCED_HYPER_REACTOR, 16)
+                .inputItems(GeneratorMachine.DYSON_SPHERE, 16)
+                .inputItems(GeneratorMachine.HYPER_REACTOR, 64)
+                .inputItems(GeneratorMachine.LARGE_NAQUADAH_REACTOR, 64)
+                .inputItems(Registries.getItem("kubejs:suprachronal_mainframe_complex"), 64)
+                .inputItems(GeneratorMachine.GENERATOR_ARRAY, 64)
+                .inputItems(GTLItems.ELECTRIC_MOTOR_MAX, 64)
+                .inputItems(GTLItems.ELECTRIC_PUMP_MAX, 64)
+                .inputItems(GTLItems.CONVEYOR_MODULE_MAX, 64)
+                .inputItems(GTLItems.ROBOT_ARM_MAX, 64)
+                .inputItems(GTLItems.ELECTRIC_PISTON_MAX, 64)
+                .inputItems(GTLItems.FIELD_GENERATOR_MAX, 64)
+                .inputItems(GTLItems.EMITTER_MAX, 64)
+                .inputItems(GTLItems.SENSOR_MAX, 64)
+                .inputItems(Registries.getItem("avaritia:singularity"), 64)
+                .inputFluids(GTLMaterials.DimensionallyTranscendentCrudeCatalyst.getFluid(1000000))
+                .inputFluids(GTLMaterials.DimensionallyTranscendentProsaicCatalyst.getFluid(1000000))
+                .inputFluids(GTLMaterials.DimensionallyTranscendentResplendentCatalyst.getFluid(1000000))
+                .inputFluids(GTLMaterials.DimensionallyTranscendentExoticCatalyst.getFluid(1000000))
+                .outputItems(MultiBlockMachineA.DIMENSIONALPOWER)
+                .duration(4400)
+                .EUt(V[MAX] * 16384)
+                .stationResearch(b -> b.researchStack(GeneratorMachine.ANNIHILATE_GENERATOR.asStack())
+                        .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
+                        .EUt(VA[MAX])
+                        .CWUt(16384))
+                .save(provider);
+
+        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("dimensional_stabilization_core")
+                .inputItems(GTL_Extend_Blocks.VOID_WORLD_BLOCK, 64)
+                .inputItems(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineB.DISSOLVING_TANK, 64)
+                .inputItems(GTItems.TOOL_DATA_MODULE, 64)
+                .inputItems(Registries.getItem("kubejs:uiv_universal_circuit"), 64)
+                .inputItems(GTItems.ELECTRIC_PUMP_UEV, 64)
+                .inputItems(GTItems.FLUID_REGULATOR_UEV, 64)
+                .inputItems(GTItems.ROBOT_ARM_UEV, 64)
+                .inputItems(Registries.getItem("kubejs:reinforced_echo_shard"), 64)
+                .inputItems(Registries.getItem("kubejs:time_dilation_containment_unit"), 64)
+                .inputItems(Registries.getItem("kubejs:aggregatione_core"), 64)
+                .inputItems(ChemicalHelper.get(GTLTagPrefix.nanoswarm, Neutronium), 32)
+                .inputItems(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineA.CHEMICAL_DISTORT, 16)
+                .inputItems(AdvancedMultiBlockMachine.SPACE_ELEVATOR, 8)
+                .inputItems(Registries.getItem("kubejs:stabilizer_core"), 4)
+                .inputItems(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineA.SLAUGHTERHOUSE, 1)
+                .inputItems(GTL_Extend_Blocks.DIMENSION_CORE, 1)
+                .inputFluids(GTLMaterials.Zylon.getFluid(9216))
+                .inputFluids(GTLMaterials.UuAmplifier.getFluid(1000000))
+                .inputFluids(GTLMaterials.MutatedLivingSolder.getFluid(1000000))
+                .inputFluids(GTLMaterials.SuperMutatedLivingSolder.getFluid(1000000))
+                .outputItems(MultiBlockMachineA.DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK)
+                .duration(4400)
+                .EUt(V[MAX] * 16384)
+                .stationResearch(b -> b.researchStack(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineB.DISSOLVING_TANK.asStack())
                         .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
                         .EUt(VA[MAX])
                         .CWUt(16384))
