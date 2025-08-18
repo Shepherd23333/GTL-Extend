@@ -336,13 +336,21 @@ public class MultiBlockMachineA {
                 .hasTESR(true)
                 .register();
 
-        PLATINUM_BASE_DPROCESSING_HUB = GTLEXRegistration.REGISTRATE.multiblock("platinum_based_rocessing_hub", WorkableElectricMultiblockMachine::new)
+        PLATINUM_BASE_DPROCESSING_HUB = GTLEXRegistration.REGISTRATE.multiblock("platinum_based_rocessing_hub", PlatinumBasedRocessingHub::new)
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(GTL_Extend_RecipeTypes.PLATINUM_BASE_DPROCESSING_HUB_RECIPES)
                 .appearanceBlock(ADVANCED_COMPUTER_CASING)
                 .tooltips(Component.literal(TextUtil.full_color("一步完成铂系金属处理")))
                 .tooltips(Component.literal("可使用等离子增产"))
                 .tooltips(Component.literal("可使用等离子：氩等离子，铁等离子，镍等离子，简并态等离子"))
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+                .recipeModifier((machine, recipe, params, result) -> {
+                    GTRecipe recipe_s = recipe.copy();
+                    recipe_s.duration = 1;
+                    recipe_s = GTRecipeModifiers.fastParallel(machine, recipe_s, Integer.MAX_VALUE, false).getFirst();
+                    return recipe_s;
+                })
                 .tooltipBuilder(GTL_EX_ADD)
                 .pattern(definition -> Platinum_basedProcessingHub_MultiBlockStructure.PLATINUM_BASE_DPROCESSING_HUB
                         .where('~', Predicates.controller(blocks(definition.getBlock())))
