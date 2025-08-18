@@ -46,20 +46,23 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     private static final long BASE_EU_COST = 5277655810867200L;
 
     protected ConditionalSubscriptionHandler StartupSubs;
+    /// 永恒蓝梦流体存储量
     @Persisted
-    private long eternalbluedream = 0; // 永恒蓝梦流体存储量
+    private long eternalbluedream = 0;
+    /// 当前电路配置编号
     @Persisted
-    private int oc = 0;     // 当前电路配置编号
+    private int oc = 0;
+    /// 绑定用户ID
     @Persisted
     @Nullable
-    private UUID userId;// 绑定用户ID
+    private UUID userId;
 
     public BlackHoleMatterDecompressor(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
         this.StartupSubs = new ConditionalSubscriptionHandler(this, this::onStructureFormed, this::isFormed);
     }
 
-    // 判断是否启用无限蓝梦模式
+    /// 判断是否启用无限蓝梦模式
     private static boolean isInfinityDreamEnabled() {
         return GTLExtendConfigHolder.INSTANCE != null && GTLExtendConfigHolder.INSTANCE.enableInfinityDreamAndDreamHostCrafting;
     }
@@ -67,7 +70,8 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     @Nullable
     public GTRecipe recipeModifier(
                                    @NotNull GTRecipe recipe) {
-        if (this.oc == 0) return null;
+        if (this.oc == 0)
+            return null;
         int parallel = calculateParallel(); // 直接调用实例方法
         long euCost = getRecipeEUt(); // 直接调用实例方法
 
@@ -90,7 +94,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         return null;
     }
 
-    // 获取超频次数（电路配置映射）
+    /// 获取超频次数（电路配置映射）
     private int calculateOverclockTimes() {
         return switch (Math.min(oc, 4)) {
             case 3 -> 2;
@@ -99,23 +103,26 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         };
     }
 
-    // 计算启动能耗
+    /// 计算启动能耗
     private long getRecipeEUt() {
         int ocTimes = calculateOverclockTimes();
         return (long) (BASE_EU_COST * Math.pow(32, ocTimes));
     }
 
-    // 计算实际并行（考虑蓝梦流体加成）
+    /// 计算实际并行（考虑蓝梦流体加成）
     private int calculateParallel() {
         int base = getBaseParallel();
-        if (!isInfinityDreamEnabled()) return base;
+        if (!isInfinityDreamEnabled())
+            return base;
 
         // 每1000B流体翻倍一次，但不超过int最大值
-        long multiplier = eternalbluedream / 1_000_000_000L;
-        return (int) Math.min(base * (1L << multiplier), Integer.MAX_VALUE);
+        long multiplier = eternalbluedream / 1_000_000L;
+        if (multiplier > 24)
+            return Integer.MAX_VALUE - 1;
+        return (int) Math.min(base * (1L << multiplier), Integer.MAX_VALUE - 1);
     }
 
-    // 计算基础并行（电路编号的8次方，1号特殊处理）
+    /// 计算基础并行（电路编号的8次方，1号特殊处理）
     private int getBaseParallel() {
         return (oc == 1) ? BASE_PARALLEL : (int) Math.pow(oc, 8);
     }
@@ -125,7 +132,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         return MANAGED_FIELD_HOLDER;
     }
 
-    // 电路配置更新逻辑
+    /// 电路配置更新逻辑
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
@@ -140,22 +147,22 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         }
     }
 
-    // 流体输入处理（每tick执行）
+    /// 流体输入处理（每tick执行）
     @Override
     public boolean onWorking() {
-        super.onWorking();
+        boolean res = super.onWorking();
 
         // 处理额外流体输入（永恒蓝梦）
         if (isInfinityDreamEnabled()) {
-            FluidStack extraFluid = FluidStack.create(ETERNALBLUEDREAM.getFluid(), 10000000000L);
+            FluidStack extraFluid = FluidStack.create(ETERNALBLUEDREAM.getFluid(), 1_000_000L);
             if (MachineIO.inputFluid(this, extraFluid)) {
-                eternalbluedream += 10000000000L;
+                eternalbluedream += 1_000_000L;
             }
         }
-        return false;
+        return res;
     }
 
-    // 玩家交互绑定
+    /// 玩家交互绑定
     @Override
     public boolean shouldOpenUI(Player player, InteractionHand hand, BlockHitResult hit) {
         if (this.userId == null || !this.userId.equals(player.getUUID())) {
