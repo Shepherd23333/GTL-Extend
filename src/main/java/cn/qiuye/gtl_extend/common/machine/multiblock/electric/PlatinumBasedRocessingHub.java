@@ -1,10 +1,12 @@
 package cn.qiuye.gtl_extend.common.machine.multiblock.electric;
 
+import org.gtlcore.gtlcore.api.machine.multiblock.ParallelMachine;
+import org.gtlcore.gtlcore.common.machine.trait.MultipleRecipesLogic;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import org.gtlcore.gtlcore.api.machine.multiblock.ParallelMachine;
-import org.gtlcore.gtlcore.common.machine.trait.MultipleRecipesLogic;
+
 import org.jetbrains.annotations.NotNull;
 
 public class PlatinumBasedRocessingHub extends WorkableElectricMultiblockMachine implements ParallelMachine {
