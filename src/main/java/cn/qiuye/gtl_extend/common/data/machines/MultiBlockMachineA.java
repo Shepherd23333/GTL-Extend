@@ -256,7 +256,7 @@ public class MultiBlockMachineA {
                 .appearanceBlock(HIGH_POWER_CASING)
                 .recipeType(GTLRecipeTypes.COSMOS_SIMULATION_RECIPES)
                 .recipeType(GTL_Extend_RecipeTypes.HORIZON_MATTER_DECOMPRESSION_RECIPES)
-                .recipeModifier((machine, recipe, params, result) -> ((BlackHoleMatterDecompressor) machine).recipeModifier(recipe))
+                .recipeModifier((machine, recipe, params, result) -> ((BlackHoleMatterDecompressor) machine).recipeModifier(machine, recipe))
                 .tooltips(Component.literal(TextUtil.full_color("创造一个黑洞，并从里面获取无限的资源")))
                 .tooltips(Component.literal("这台机器需要巨量的EU，无法使用常规手段供能"))
                 .tooltips(Component.literal("由无线电网直接供电，具体数值可在GUI內查看"))

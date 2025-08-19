@@ -44,10 +44,10 @@ public class GTL_Extend_Blocks {
     public static void init() {}
 
     /**
-     * @param name
-     * @param texture
-     * @param renderType
-     * @param baseProperties
+     * @param name           .
+     * @param texture        .
+     * @param renderType     .
+     * @param baseProperties .
      * @return 方块注册对象
      */
     public static BlockEntry<Block> createCasingBlock(
@@ -79,12 +79,12 @@ public class GTL_Extend_Blocks {
 
     /**
      *
-     * @param name
-     * @param texture
-     * @param renderType
-     * @param baseProperties
-     * @param targetMap
-     * @param tier
+     * @param name           .
+     * @param texture        .
+     * @param renderType     .
+     * @param baseProperties .
+     * @param targetMap      .
+     * @param tier           .
      * @return 方块注册对象
      */
     public static BlockEntry<Block> createCasingBlock(
