@@ -8,11 +8,11 @@ import org.gtlcore.gtlcore.utils.MachineIO;
 
 import com.gregtechceu.gtceu.api.machine.ConditionalSubscriptionHandler;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
-import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
@@ -44,8 +44,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     // 常量定义
     private static final int BASE_PARALLEL = 64;
     private static final long BASE_EU_COST = 5277655810867200L;
-
-    protected ConditionalSubscriptionHandler StartupSubs;
+  
     /// 永恒蓝梦流体存储量
     @Persisted
     private long eternalbluedream = 0;
@@ -54,12 +53,13 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     private int oc = 0;
     /// 绑定用户ID
     @Persisted
-    @Nullable
-    private UUID userId;
+    private UUID userId;// 绑定用户ID
+
+    protected ConditionalSubscriptionHandler StartupSubs;
 
     public BlackHoleMatterDecompressor(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
-        this.StartupSubs = new ConditionalSubscriptionHandler(this, this::onStructureFormed, this::isFormed);
+        this.StartupSubs = new ConditionalSubscriptionHandler(this, this::StartupUpdate, this::isFormed);
     }
 
     /// 判断是否启用无限蓝梦模式
@@ -68,33 +68,38 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     }
 
     @Nullable
-    public GTRecipe recipeModifier(
-                                   @NotNull GTRecipe recipe) {
-        if (this.oc == 0)
-            return null;
+    public GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) 
         int parallel = calculateParallel(); // 直接调用实例方法
         long euCost = getRecipeEUt(); // 直接调用实例方法
+        if (machine instanceof BlackHoleMatterDecompressor BlackHoleMatterDecompressor && BlackHoleMatterDecompressor.userId != null && BlackHoleMatterDecompressor.oc > 0) {
+            if (this.userId != null &&
+                    WirelessEnergyManager.addEUToGlobalEnergyMap(
+                            this.userId,
+                            -euCost,
+                            this)) {
 
-        if (this.userId != null &&
-                WirelessEnergyManager.addEUToGlobalEnergyMap(
-                        this.userId,
-                        -euCost,
-                        this)) {
+                GTRecipe modifiedRecipe = recipe.copy();
+                modifiedRecipe.duration = (int) (4800 / Math.pow(2, this.oc));
 
-            GTRecipe modifiedRecipe = recipe.copy();
-            modifiedRecipe.duration = (int) (4800 / Math.pow(2, this.oc));
-
-            // 应用精确并行处理并返回结果
-            return GTRecipeModifiers.accurateParallel(
-                    this, // 传入当前实例
-                    modifiedRecipe,
-                    parallel,
-                    false).getFirst();
+                // 应用精确并行处理并返回结果
+                return GTRecipeModifiers.accurateParallel(
+                        this, // 传入当前实例
+                        modifiedRecipe,
+                        parallel,
+                        false).getFirst();
+            }
         }
         return null;
     }
 
-    /// 获取超频次数（电路配置映射）
+
+    @Override
+    public void onStructureFormed() {
+        super.onStructureFormed();
+        StartupSubs.initialize(getLevel());
+    }
+
+    // 获取超频次数（电路配置映射）
     private int calculateOverclockTimes() {
         return switch (Math.min(oc, 4)) {
             case 3 -> 2;
@@ -132,20 +137,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         return MANAGED_FIELD_HOLDER;
     }
 
-    /// 电路配置更新逻辑
-    @Override
-    public void onStructureFormed() {
-        super.onStructureFormed();
-        int[] priorityOrder = { 8, 7, 6, 5, 4, 3, 2, 1 };
-        for (int config : priorityOrder) {
-            this.oc = 0; // 通过this访问实例变量
-            if (MachineIO.notConsumableCircuit(this, config)) {
-                this.oc = config;
-                return;
 
-            }
-        }
-    }
 
     /// 流体输入处理（每tick执行）
     @Override
@@ -160,6 +152,25 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
             }
         }
         return res;
+      
+    // 电路配置更新逻辑
+    protected void StartupUpdate() {
+        if (getOffsetTimer() % 20 == 0) {
+            oc = 0;
+            // 处理额外流体输入（永恒蓝梦）
+            if (isInfinityDreamEnabled()) {
+                if (MachineIO.inputFluid(this, ETERNALBLUEDREAM.getFluid(100000000))) {
+                    eternalbluedream += 100000000;
+                }
+            }
+            int[] priorityOrder = { 8, 7, 6, 5, 4, 3, 2, 1 };
+            for (int config : priorityOrder) {
+                if (MachineIO.notConsumableCircuit(this, config)) {
+                    this.oc = config;
+                    return;
+                }
+            }
+        }
     }
 
     /// 玩家交互绑定

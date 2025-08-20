@@ -45,7 +45,6 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
     BigInteger two = BigInteger.valueOf(2);
     private final BigInteger MAX = two.pow(4194304);
     @Persisted
-    @Nullable
     private UUID userid;
     @Persisted
     private int oc = 0;     // 当前电路配置编号
@@ -53,20 +52,27 @@ public class DimensionalPower extends NoEnergyMultiblockMachine implements IMach
 
     public DimensionalPower(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
-        this.machineStorage = new ConditionalSubscriptionHandler(this, this::onStructureFormed, this::isFormed);
+        this.machineStorage = new ConditionalSubscriptionHandler(this, this::StartupUpdate, this::isFormed);
     }
 
     // 电路配置更新逻辑
+    public void StartupUpdate() {
+        if (getOffsetTimer() % 20 == 0) {
+            oc = 0;
+            int[] priorityOrder = { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            for (int config : priorityOrder) {
+                if (MachineIO.notConsumableCircuit(this, config)) {
+                    this.oc = config;
+                    return;
+                }
+            }
+        }
+    }
+
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        int[] priorityOrder = { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-        for (int config : priorityOrder) {
-            if (MachineIO.notConsumableCircuit(this, config)) {
-                this.oc = config;
-                return;
-            }
-        }
+        machineStorage.initialize(getLevel());
     }
 
     @Override
