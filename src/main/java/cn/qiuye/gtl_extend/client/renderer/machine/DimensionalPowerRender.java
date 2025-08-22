@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class DimensionalPowerRender extends WorkableCasingMachineRenderer implements IControllerRenderer {
 
-    private static final boolean enabled = GTLExtendConfigHolder.INSTANCE != null && GTLExtendConfigHolder.INSTANCE.enableHyperDimensionalPower;
+    private static final boolean enabled = GTLExtendConfigHolder.INSTANCE.enableHyperDimensionalPower;
     private static final ResourceLocation SPACE_MODEL = GTL_Extend.id("obj/space");
 
     public DimensionalPowerRender() {

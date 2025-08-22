@@ -9,9 +9,9 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 
 import org.jetbrains.annotations.NotNull;
 
-public class PlatinumBasedRocessingHub extends WorkableElectricMultiblockMachine implements ParallelMachine {
+public class PlatinumBasedProcessingHub extends WorkableElectricMultiblockMachine implements ParallelMachine {
 
-    public PlatinumBasedRocessingHub(IMachineBlockEntity holder, Object... args) {
+    public PlatinumBasedProcessingHub(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
 

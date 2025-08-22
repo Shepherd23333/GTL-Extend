@@ -335,8 +335,8 @@ public class MultiBlockMachineA {
                 .renderer(DimensionalPowerRender::new)
                 .hasTESR(true)
                 .register();
-      
-        PLATINUM_BASE_DPROCESSING_HUB = GTLEXRegistration.REGISTRATE.multiblock("platinum_based_rocessing_hub", PlatinumBasedRocessingHub::new)
+
+        PLATINUM_BASE_DPROCESSING_HUB = GTLEXRegistration.REGISTRATE.multiblock("platinum_based_processing_hub", PlatinumBasedProcessingHub::new)
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(GTL_Extend_RecipeTypes.PLATINUM_BASE_DPROCESSING_HUB_RECIPES)
                 .appearanceBlock(ADVANCED_COMPUTER_CASING)

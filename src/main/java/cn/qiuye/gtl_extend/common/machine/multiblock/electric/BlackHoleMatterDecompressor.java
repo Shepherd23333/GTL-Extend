@@ -44,14 +44,10 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
     // 常量定义
     private static final int BASE_PARALLEL = 64;
     private static final long BASE_EU_COST = 5277655810867200L;
-  
-    /// 永恒蓝梦流体存储量
     @Persisted
-    private long eternalbluedream = 0;
-    /// 当前电路配置编号
+    private long eternalbluedream = 0; // 永恒蓝梦流体存储量
     @Persisted
-    private int oc = 0;
-    /// 绑定用户ID
+    private int oc = 0;     // 当前电路配置编号
     @Persisted
     private UUID userId;// 绑定用户ID
 
@@ -62,13 +58,13 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         this.StartupSubs = new ConditionalSubscriptionHandler(this, this::StartupUpdate, this::isFormed);
     }
 
-    /// 判断是否启用无限蓝梦模式
+    // 判断是否启用无限蓝梦模式
     private static boolean isInfinityDreamEnabled() {
         return GTLExtendConfigHolder.INSTANCE != null && GTLExtendConfigHolder.INSTANCE.enableInfinityDreamAndDreamHostCrafting;
     }
 
     @Nullable
-    public GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) 
+    public GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         int parallel = calculateParallel(); // 直接调用实例方法
         long euCost = getRecipeEUt(); // 直接调用实例方法
         if (machine instanceof BlackHoleMatterDecompressor BlackHoleMatterDecompressor && BlackHoleMatterDecompressor.userId != null && BlackHoleMatterDecompressor.oc > 0) {
@@ -92,7 +88,6 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         return null;
     }
 
-
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
@@ -108,26 +103,27 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         };
     }
 
-    /// 计算启动能耗
+    // 计算启动能耗
     private long getRecipeEUt() {
         int ocTimes = calculateOverclockTimes();
         return (long) (BASE_EU_COST * Math.pow(32, ocTimes));
     }
 
-    /// 计算实际并行（考虑蓝梦流体加成）
+    // 计算实际并行（考虑蓝梦流体加成）
     private int calculateParallel() {
         int base = getBaseParallel();
         if (!isInfinityDreamEnabled())
             return base;
 
         // 每1000B流体翻倍一次，但不超过int最大值
+        // 所以到底是1kB还是1MB呢
         long multiplier = eternalbluedream / 1_000_000L;
         if (multiplier > 24)
-            return Integer.MAX_VALUE - 1;
-        return (int) Math.min(base * (1L << multiplier), Integer.MAX_VALUE - 1);
+            return Integer.MAX_VALUE;
+        return (int) Math.min(base * (1L << multiplier), Integer.MAX_VALUE);
     }
 
-    /// 计算基础并行（电路编号的8次方，1号特殊处理）
+    // 计算基础并行（电路编号的8次方，1号特殊处理）
     private int getBaseParallel() {
         return (oc == 1) ? BASE_PARALLEL : (int) Math.pow(oc, 8);
     }
@@ -137,30 +133,14 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         return MANAGED_FIELD_HOLDER;
     }
 
-
-
-    /// 流体输入处理（每tick执行）
-    @Override
-    public boolean onWorking() {
-        boolean res = super.onWorking();
-
-        // 处理额外流体输入（永恒蓝梦）
-        if (isInfinityDreamEnabled()) {
-            FluidStack extraFluid = FluidStack.create(ETERNALBLUEDREAM.getFluid(), 1_000_000L);
-            if (MachineIO.inputFluid(this, extraFluid)) {
-                eternalbluedream += 1_000_000L;
-            }
-        }
-        return res;
-      
     // 电路配置更新逻辑
     protected void StartupUpdate() {
         if (getOffsetTimer() % 20 == 0) {
             oc = 0;
             // 处理额外流体输入（永恒蓝梦）
             if (isInfinityDreamEnabled()) {
-                if (MachineIO.inputFluid(this, ETERNALBLUEDREAM.getFluid(100000000))) {
-                    eternalbluedream += 100000000;
+                if (MachineIO.inputFluid(this, ETERNALBLUEDREAM.getFluid(1_000_000L))) {
+                    eternalbluedream += 1_000_000L;
                 }
             }
             int[] priorityOrder = { 8, 7, 6, 5, 4, 3, 2, 1 };
@@ -173,7 +153,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
         }
     }
 
-    /// 玩家交互绑定
+    // 玩家交互绑定
     @Override
     public boolean shouldOpenUI(Player player, InteractionHand hand, BlockHitResult hit) {
         if (this.userId == null || !this.userId.equals(player.getUUID())) {
@@ -194,7 +174,7 @@ public class BlackHoleMatterDecompressor extends NoEnergyMultiblockMachine {
             if (isInfinityDreamEnabled()) {
                 textList.add(Component.literal("永恒蓝梦: " +
                         FormattingUtil.formatNumbers(eternalbluedream) + " mB"));
-                textList.add(Component.literal("基础并行: " + BASE_PARALLEL));
+                textList.add(Component.literal("基础并行: " + getBaseParallel()));
             } else {
                 double actualMultiplier = getPowerMultiplier(circuitConfig) * Math.pow(2, calculateOverclockTimes());
                 String powerMultiplierDisplay = (actualMultiplier >= Double.MAX_VALUE / 1e3) ? "∞" : FormattingUtil.formatNumbers(actualMultiplier);

@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlackHoleMatterDecompressorRender extends WorkableCasingMachineRenderer implements IControllerRenderer {
 
-    private static final boolean enabled = GTLExtendConfigHolder.INSTANCE != null && GTLExtendConfigHolder.INSTANCE.enableBlackHoleMatterDecompressor;
+    private static final boolean enabled = GTLExtendConfigHolder.INSTANCE.enableBlackHoleMatterDecompressor;
     private static final ResourceLocation SPACE_MODEL = GTL_Extend.id("obj/space");
     private static final ResourceLocation BLACKHOLE_MODEL = GTL_Extend.id("obj/black_hole");
 
