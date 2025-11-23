@@ -11,7 +11,7 @@ import org.gtlcore.gtlcore.api.recipe.RecipeResult;
 import org.gtlcore.gtlcore.api.recipe.RecipeRunnerHelper;
 
 import com.gtladd.gtladditions.api.recipe.WirelessGTRecipe;
-import com.gtladd.gtladditions.api.recipe.WirelessGTRecipeBuilder;
+import com.gtladd.gtladditions.utils.RecipeCalculationHelper;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -20,12 +20,14 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import lombok.Getter;
 import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.Nullable;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.function.BiPredicate;
 
@@ -104,12 +106,7 @@ public class MultipleRecipesLogic extends RecipeLogic implements ILockRecipe, IR
             return null;
         }
 
-        return WirelessGTRecipeBuilder
-                .ofRaw()
-                .output(ItemRecipeCapability.CAP, itemOutputs)
-                .output(FluidRecipeCapability.CAP, fluidOutputs)
-                .duration(this.parallel.getExtendlDuration())
-                .buildRawRecipe();
+        return RecipeCalculationHelper.INSTANCE.buildWirelessRecipe(itemOutputs, fluidOutputs, this.parallel.getExtendlDuration(), BigInteger.ZERO, GTRecipeTypes.DUMMY_RECIPES);
     }
 
     private Iterator<GTRecipe> lookupRecipeIterator() {

@@ -4,7 +4,7 @@ import cn.qiuye.gtlextend.utils.NumberUtils;
 
 import org.gtlcore.gtlcore.integration.gtmt.NewGTValues;
 
-import com.gtladd.gtladditions.common.record.MachineEnergyData;
+import com.gtladd.gtladditions.common.data.MachineEnergyData;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;

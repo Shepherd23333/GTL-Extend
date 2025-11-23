@@ -16,7 +16,7 @@ import com.gtladd.gtladditions.api.machine.logic.IWirelessRecipeLogic;
 import com.gtladd.gtladditions.api.machine.trait.IWirelessNetworkEnergyHandler;
 import com.gtladd.gtladditions.api.recipe.IWirelessGTRecipe;
 import com.gtladd.gtladditions.api.recipe.WirelessGTRecipe;
-import com.gtladd.gtladditions.api.recipe.WirelessGTRecipeBuilder;
+import com.gtladd.gtladditions.utils.RecipeCalculationHelper;
 
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -28,6 +28,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
@@ -195,18 +196,13 @@ public abstract class MultipleRecipesLogicMixin extends RecipeLogic implements I
         }
 
         if (itemOutputs.isEmpty() && fluidOutputs.isEmpty()) {
-            if (getRecipeStatus() == null || getRecipeStatus().isSuccess()) RecipeResult.of(this.machine, RecipeResult.FAIL_FIND);
+            if (getRecipeStatus() == null || getRecipeStatus().isSuccess())
+                RecipeResult.of(this.machine, RecipeResult.FAIL_FIND);
             return null;
         }
 
         var eut = totalEu.divide(BigInteger.valueOf(2)).negate();
-        return WirelessGTRecipeBuilder
-                .ofRaw()
-                .output(ItemRecipeCapability.CAP, itemOutputs)
-                .output(FluidRecipeCapability.CAP, fluidOutputs)
-                .duration(2)
-                .setWirelessEut(eut)
-                .buildRawRecipe();
+        return RecipeCalculationHelper.INSTANCE.buildWirelessRecipe(itemOutputs, fluidOutputs, 2, eut, GTRecipeTypes.DUMMY_RECIPES);
     }
 
     @Override
