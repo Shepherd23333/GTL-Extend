@@ -35,7 +35,7 @@ public class GTLExtendConfigHolder {
     @Configurable.Comment("开启通用AE制造机（修改后请退出重进）")
     public boolean enableGeneralAEManufacturingMachine = false;
     @Configurable
-    @Configurable.Comment("最大配方线程数逻辑使用更改 AUTO为Integer.MAX，ADD为gtladd的线程计算逻辑，SET为设置线程数")
+    @Configurable.Comment("最大配方线程数逻辑使用更改 AUTO为Integer.MAX*2，ADD为gtladd的线程计算逻辑，SET为设置线程数")
     public ThreadsType max_threads_type = ThreadsType.AUTO;
     @Configurable
     @Configurable.Comment("ADD配方默认携带线程数，可以与天球叠加")
