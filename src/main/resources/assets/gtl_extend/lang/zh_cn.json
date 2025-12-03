@@ -11,6 +11,7 @@
   "config.gtl_extend.option.ticktime": "实体加速",
   "gtl_extend.registry.add": "由GregTech Leisure-Extend添加",
   "block.gtl_extend.dimensionally_transcendent_dissolving_tank": "超维度溶解罐",
+  "block.gtl_extend.planetaryengine": "§c行星发动机",
   "itemGroup.gtl_extend.machines_item": "GTL_EX 机器",
   "itemGroup.gtl_extend.blocks_item": "GTL_EX 方块",
   "itemGroup.gtl_extend.gtl_ex_gt_item": "GTL_EX 物品",
