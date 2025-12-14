@@ -649,9 +649,5 @@ public class PlanetaryEngineMultiblock {
             .aisle(PlanetaryEngine_Part64.LAYER_010)
             .aisle(PlanetaryEngine_Part65.LAYER_001)
             .aisle(PlanetaryEngine_Part65.LAYER_002)
-            .aisle(PlanetaryEngine_Part65.LAYER_003)
-            .aisle(PlanetaryEngine_Part65.LAYER_004)
-            .aisle(PlanetaryEngine_Part65.LAYER_005)
-            .aisle(PlanetaryEngine_Part65.LAYER_006)
-            .aisle(PlanetaryEngine_Part65.LAYER_007);
+            .aisle(PlanetaryEngine_Part65.LAYER_003);
 }
