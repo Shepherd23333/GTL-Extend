@@ -20,6 +20,7 @@ public class PlanetaryEngineRecipe {
                 .inputItems(Blocks.COBBLESTONE.asItem(), Integer.MAX_VALUE - 1)
                 .outputFluids(Oxygen.getFluid(FluidStorageKeys.PLASMA, 1111000))
                 .inputEU(GTValues.V[GTValues.UEV] * 4)
+                .duration(100)
                 .save(provider);
     }
 }
