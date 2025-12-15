@@ -596,15 +596,16 @@ public class MultiBlockMachineA {
             .register();
 
     public static final MultiblockMachineDefinition PlanetaryEngine = GTLEXRegistration.REGISTRATE
-            .multiblock("planetaryengine", WorkableElectricMultiblockMachine::new)
+            .multiblock("planetaryengine", PlanetaryEngineMachine::new)
             .langValue("§cPlanetary Engine")
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .recipeTypes(GTL_Extend_RecipeTypes.PLANETARY_ENGINE_RECIPES)
             .appearanceBlock(HIGH_POWER_CASING)
+            .recipeModifier((machine, recipe, params, result) -> PlanetaryEngineMachine.PERecipeModifier(recipe))
             .pattern(definition -> PlanetaryEngineMultiblock.PATTERN
                     .where('~', controller(blocks(definition.getBlock())))
                     .where(' ', any())
-                    .where('A', Predicates.blocks(GetRegistries.getBlock("minecraft:light_gray_wool"))
+                    .where('A', Predicates.blocks(GetRegistries.getBlock("gtlcore:sps_casing"))
                             .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
                             .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                             .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))

@@ -60,6 +60,7 @@ public class GTL_Extend_Addon implements IGTAddon {
         GTLEXMachineRecipe.init(provider);
         CircuitsRecipe.init(provider);
         GeneralAE_Recipe.init(provider);
+        PlanetaryEngineRecipe.init(provider);
         VoidPumpRecipe.init(provider);
         CattleCattleRecipe.init(provider);
         ElectricImplosionCompressorRecipe.init(provider);

@@ -1,5 +1,6 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Materials;
 import cn.qiuye.gtlextend.config.GTLExtendConfigHolder;
 
@@ -26,7 +27,7 @@ public class VoidPumpRecipe {
     public static void init(Consumer<FinishedRecipe> provider) {
         ordinary(provider);
         if (GTLExtendConfigHolder.INSTANCE.enableGeneralAEManufacturingMachine) {
-            VOID_PUMP_RECIPES.recipeBuilder("gtl_extend_fluid_fluix1")
+            VOID_PUMP_RECIPES.recipeBuilder(GTL_Extend.id("fluid_fluix1"))
                     .circuitMeta(32)
                     .outputFluids(GTL_Extend_Materials.FLUIXCRYSTAL.getFluid(1000))
                     .duration(500)
@@ -34,7 +35,7 @@ public class VoidPumpRecipe {
                     .addData("CRTier", 2)
                     .save(provider);
 
-            EXTRACTOR_RECIPES.recipeBuilder("gtl_extend_fluid_fluix")
+            EXTRACTOR_RECIPES.recipeBuilder(GTL_Extend.id("fluid_fluix"))
                     .inputItems(Registries.getItem("ae2:fluix_dust"))
                     .outputFluids(GTL_Extend_Materials.FLUIXCRYSTAL.getFluid(144))
                     .duration(200)

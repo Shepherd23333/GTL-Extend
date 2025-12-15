@@ -44,6 +44,11 @@ public class GTL_Extend_RecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.tier_combination", getCRTier(data.getInt("CRTier"))))
             .setSound(GTSoundEntries.MOTOR);
+    public final static GTRecipeType PLANETARY_ENGINE_RECIPES = register("planet_engine", MULTIBLOCK)
+            .setMaxIOSize(1, 0, 0, 9)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.FURNACE);
 
     public static String getCRTier(int tier) {
         if (tier == 2) {
