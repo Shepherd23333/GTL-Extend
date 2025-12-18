@@ -95,13 +95,13 @@ public class PlanetaryEngineMachine extends WorkableElectricMultiblockMachine {
         recipe1.inputs.put(ItemRecipeCapability.CAP, itemInputs);
         var materials = getMaterial();
         if (fluidoutput != null) {
-            var tierChanceBoost = fluidoutput.get(1).tierChanceBoost;
+            var tierChanceBoost = fluidoutput.get(0).tierChanceBoost;
             var slotName = fluidoutput.get(0).slotName;
             var uiName = fluidoutput.get(0).uiName;
 
             if (!materials.isEmpty()) {
                 for (Material material : materials) {
-                    fluidoutput.add(new Content(material.getFluid(FluidStorageKeys.PLASMA, 131072000), 100, 100, tierChanceBoost, slotName, uiName));
+                    fluidOutputs.add(new Content(material.getFluid(FluidStorageKeys.PLASMA, 131072000), 100, 100, tierChanceBoost, slotName, uiName));
                 }
             }
         }
