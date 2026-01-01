@@ -601,7 +601,7 @@ public class MultiBlockMachineA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTL_Extend_RecipeTypes.PLANETARY_ENGINE_RECIPES)
             .appearanceBlock(HIGH_POWER_CASING)
-            .recipeModifier((machine, recipe, params, result) -> PlanetaryEngineMachine.PERecipeModifier(recipe))
+            .recipeModifier((machine, recipe, params, result) -> PlanetaryEngineMachine.PERecipeModifier(machine,recipe,params,result))
             .pattern(definition -> PlanetaryEngineMultiblock.PATTERN
                     .where('~', controller(blocks(definition.getBlock())))
                     .where(' ', any())
