@@ -10,9 +10,9 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
-
 import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
@@ -22,7 +22,6 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.math.BigInteger;
@@ -83,8 +82,8 @@ public class PlanetaryEngineMachine extends WorkableElectricMultiblockMachine {
         return selectedMaterials;
     }
 
-    public static GTRecipe PERecipeModifier(MetaMachine machine,  GTRecipe recipe,
-                                            OCParams params,  OCResult result) {
+    public static GTRecipe PERecipeModifier(MetaMachine machine, GTRecipe recipe,
+                                            OCParams params, OCResult result) {
         if (machine instanceof IMultiController controller && controller.isFormed()) {
             final var itemInputs = new ObjectArrayList<Content>();
             final var itemOutputs = new ObjectArrayList<Content>();
