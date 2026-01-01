@@ -1,5 +1,7 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
+
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
 import org.gtlcore.gtlcore.utils.Registries;
 
@@ -12,7 +14,7 @@ import static cn.qiuye.gtlextend.common.data.GTL_Extend_RecipeTypes.DIMENSIONALP
 public class DimensionalPowerRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        DIMENSIONALPOWER_RECIPES.recipeBuilder("dimensional_power")
+        DIMENSIONALPOWER_RECIPES.recipeBuilder(GTL_Extend.id("dimensional_power"))
                 .inputItems(Registries.getItem("avaritia:singularity"))
                 .inputFluids(GTLMaterials.ExcitedDtec.getFluid(1000))
                 .outputItems(Registries.getItem("kubejs:infinity_antimatter_fuel_rod"))

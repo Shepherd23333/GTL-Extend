@@ -43,7 +43,7 @@ public class VoidPumpRecipe {
                     .save(provider);
         }
         if (GTLExtendConfigHolder.INSTANCE.enableInfinityDreamAndDreamHostCrafting) {
-            VOID_PUMP_RECIPES.recipeBuilder("eternal_blue_dream_vein_fluid")
+            VOID_PUMP_RECIPES.recipeBuilder(GTL_Extend.id("eternal_blue_dream_vein_fluid"))
                     .circuitMeta(31)
                     .outputFluids(ETERNALBLUEDREAM.getFluid(1000))
                     .duration(500)
@@ -51,7 +51,7 @@ public class VoidPumpRecipe {
                     .addData("CRTier", 2)
                     .save(provider);
         }
-        VOID_PUMP_RECIPES.recipeBuilder("gtl_extend_fluid_fluix")
+        VOID_PUMP_RECIPES.recipeBuilder(GTL_Extend.id("fluid_fluix"))
                 .notConsumable(new ItemStack(Registries.getItem("kubejs:dust_cryotheum"), 64))
                 .outputFluids(fluidGelid())
                 .duration(500)
@@ -87,7 +87,7 @@ public class VoidPumpRecipe {
             int circuit = (int) recipe[1];
             Material fluid = (Material) recipe[2];
 
-            VOID_PUMP_RECIPES.recipeBuilder("gtl_extend_" + name)
+            VOID_PUMP_RECIPES.recipeBuilder(GTL_Extend.id(name))
                     .circuitMeta(circuit)
                     .outputFluids(fluid.getFluid(100_000))
                     .duration(500)

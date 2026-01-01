@@ -1,5 +1,7 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
+
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
 import org.gtlcore.gtlcore.utils.Registries;
 
@@ -14,7 +16,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.Milk;
 public class CattleCattleRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        CATTLE_CATTLE_MACHINE_RECIPES.recipeBuilder("gtl_extend_milk")
+        CATTLE_CATTLE_MACHINE_RECIPES.recipeBuilder(GTL_Extend.id("milk"))
                 .notConsumable(Registries.getItem("minecraft:cow_spawn_egg"))
                 .outputFluids(Milk.getFluid(10000))
                 .duration(20)
@@ -22,7 +24,7 @@ public class CattleCattleRecipe {
                 .addData("CRTier", 1)
                 .save(provider);
 
-        CATTLE_CATTLE_MACHINE_RECIPES.recipeBuilder("gtl_extend_liquidstarlight")
+        CATTLE_CATTLE_MACHINE_RECIPES.recipeBuilder(GTL_Extend.id("liquidstarlight"))
                 .inputFluids(GTLMaterials.Mana.getFluid(10000))
                 .outputFluids(GTLMaterials.LiquidStarlight.getFluid(10000))
                 .duration(20)

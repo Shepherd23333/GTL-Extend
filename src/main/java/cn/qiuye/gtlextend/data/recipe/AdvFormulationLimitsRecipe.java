@@ -1,5 +1,6 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
 import cn.qiuye.gtlextend.api.registries.GetRegistries;
 
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
@@ -21,7 +22,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECI
 public class AdvFormulationLimitsRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "void_world_block",
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTL_Extend.id("void_world_block"),
                 VOID_WORLD_BLOCK.asStack(),
                 "AAA",
                 "ABA",
@@ -29,7 +30,7 @@ public class AdvFormulationLimitsRecipe {
                 'A', GetRegistries.getItem("minecraft:obsidian"),
                 'B', GetRegistries.getItem("minecraft:ender_pearl"));
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("dimension_core")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("dimension_core"))
                 .inputItems(VOID_WORLD_BLOCK, 64)
                 .inputItems(Registries.getItem("gtceu:assembler_module"), 32)
                 .inputItems(Registries.getItem("gtceu:resource_collection"), 32)

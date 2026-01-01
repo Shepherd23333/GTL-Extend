@@ -1,5 +1,6 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Item;
 import cn.qiuye.gtlextend.config.GTLExtendConfigHolder;
 
@@ -21,7 +22,7 @@ public class CircuitsRecipe {
         if (GTLExtendConfigHolder.INSTANCE.enableInfinityDreamAndDreamHostCrafting) {
 
             // 生成 LV 配方（基础）
-            SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("eternalbluedream_ulv_processor_mainframe")
+            SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("eternalbluedream_ulv_processor_mainframe"))
                     .inputItems(Registries.getItem("minecraft:sand"), 64)
                     .inputFluids(ETERNALBLUEDREAM.getFluid(9216))
                     .outputItems(GTL_Extend_Item.ETERNALBLUE_DREAM_ULV_PROCESSOR_MAINFRAME.get())
@@ -35,7 +36,7 @@ public class CircuitsRecipe {
                 String currentTier = tiers[i];
                 String prevTier = tiers[i - 1];
 
-                SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("eternalbluedream_" + currentTier + "_processor_mainframe")
+                SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("eternalbluedream_" + currentTier + "_processor_mainframe"))
                         .inputItems(getItemEntry(prevTier).get()) // 输入前一级物品
                         .inputFluids(ETERNALBLUEDREAM.getFluid(9216)) // 固定流体输入
                         .outputItems(getItemEntry(currentTier).get()) // 输出当前级物品

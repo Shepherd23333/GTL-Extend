@@ -1,5 +1,6 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
 import cn.qiuye.gtlextend.api.registries.GetRegistries;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Blocks;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Item;
@@ -62,7 +63,7 @@ public class GTLEXMachineRecipe {
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
                     true,
-                    tier + "_primitive_magic_energy",
+                    GTL_Extend.id(tier + "_primitive_magic_energy"),
                     new ItemStack(GetRegistries.getItem(namespace + ":" + tier + "_primitive_magic_energy")),
                     "ADA", "ABA", "CDC",
                     'A', GetRegistries.getItem("gtceu:" + tier + "_machine_casing"),
@@ -71,7 +72,7 @@ public class GTLEXMachineRecipe {
                     'D', circuitTag);
         }
         if (GTLExtendConfigHolder.INSTANCE.enableGeneralPurposeSteamEngine) {
-            VanillaRecipeHelper.addShapedRecipe(provider, true, "the_general_steam_engine",
+            VanillaRecipeHelper.addShapedRecipe(provider, true, GTL_Extend.id("the_general_steam_engine"),
                     MultiBlockMachineA.GENERAL_PURPOSE_STEAM_ENGINE.asStack(),
                     "ABA",
                     "BCB",
@@ -81,7 +82,7 @@ public class GTLEXMachineRecipe {
                     'C', GetRegistries.getItem("kubejs:precision_steam_mechanism"));
         }
         if (GTLExtendConfigHolder.INSTANCE.enableGeneralAEManufacturingMachine) {
-            VanillaRecipeHelper.addShapedRecipe(provider, true, "general_ae_production",
+            VanillaRecipeHelper.addShapedRecipe(provider, true, GTL_Extend.id("general_ae_production"),
                     MultiBlockMachineA.GENERAL_PURPOSE_AE_PRODUCTION.asStack(),
                     "AAA",
                     "ABA",
@@ -90,7 +91,7 @@ public class GTLEXMachineRecipe {
                     'B', CustomTags.EV_CIRCUITS);
         }
 
-        ASSEMBLER_RECIPES.recipeBuilder("the_steam_integrated_ore_processing_center")
+        ASSEMBLER_RECIPES.recipeBuilder(GTL_Extend.id("the_steam_integrated_ore_processing_center"))
                 .inputItems(LARGE_STEAM_MACERATOR, 64)
                 .inputItems(LARGE_STEAM_BATH, 64)
                 .inputItems(LARGE_STEAM_THERMAL_CENTRIFUGE, 64)
@@ -103,7 +104,7 @@ public class GTLEXMachineRecipe {
                 .EUt(VA[LV])
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("cattle_cattle_machine")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("cattle_cattle_machine"))
                 .inputFluids(GTMaterials.Milk.getFluid(10000000000L))
                 .outputItems(MultiBlockMachineA.CATTLE_CATTLE_MACHINE)
                 .duration(20000)
@@ -114,7 +115,7 @@ public class GTLEXMachineRecipe {
                         .CWUt(128))
                 .save(provider);
 
-        ASSEMBLER_RECIPES.recipeBuilder("superfluid_general_energy_furnace")
+        ASSEMBLER_RECIPES.recipeBuilder(GTL_Extend.id("superfluid_general_energy_furnace"))
                 .inputItems(Registries.getItem("gtceu:electric_blast_furnace"), 8)
                 .inputItems(Registries.getItem("gtceu:alloy_blast_smelter"), 8)
                 .inputItems(Registries.getItem("gtceu:multi_smelter"), 8)
@@ -127,7 +128,7 @@ public class GTLEXMachineRecipe {
                 .EUt(V[UHV])
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("platinum_based_rocessing_hub")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("platinum_based_rocessing_hub"))
                 .inputItems(Registries.getItem("gtceu:chemical_plant"), 16)
                 .inputItems(Registries.getItem("gtceu:large_distillery"), 4)
                 .inputItems(Registries.getItem("gtceu:large_sifting_funnel"), 4)
@@ -150,7 +151,7 @@ public class GTLEXMachineRecipe {
                         .CWUt(128))
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder("quantum_computer")
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("quantum_computer"))
                 .inputItems(AEBlocks.CONDENSER.stack())
                 .inputItems(GTLBlocks.CRAFTING_STORAGE_MAX, 10)
                 .inputItems(GTResearchMachines.HPCA_BRIDGE_COMPONENT, 10)
@@ -181,7 +182,7 @@ public class GTLEXMachineRecipe {
                         .CWUt(256))
                 .save(provider);
 
-        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("black_hole_matter_decompressor")
+        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("black_hole_matter_decompressor"))
                 .inputItems(Registries.getItem("gtlcore:dimension_injection_casing"), 64)
                 .inputItems(Registries.getItem("kubejs:spacetime_compression_field_generator"), 64)
                 .inputItems(Registries.getItem("kubejs:dimensional_stability_casing"), 64)
@@ -211,7 +212,7 @@ public class GTLEXMachineRecipe {
                         .CWUt(16384))
                 .save(provider);
 
-        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("dimensionalpower")
+        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("dimensionalpower"))
                 .inputItems(GeneratorMachine.ANNIHILATE_GENERATOR, 4)
                 .inputItems(GeneratorMachine.ADVANCED_HYPER_REACTOR, 16)
                 .inputItems(GeneratorMachine.DYSON_SPHERE, 16)
@@ -241,7 +242,7 @@ public class GTLEXMachineRecipe {
                         .CWUt(16384))
                 .save(provider);
 
-        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("dimensional_stabilization_core")
+        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("dimensional_stabilization_core"))
                 .inputItems(GTL_Extend_Blocks.VOID_WORLD_BLOCK, 64)
                 .inputItems(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineB.DISSOLVING_TANK, 64)
                 .inputItems(GTItems.TOOL_DATA_MODULE, 64)
@@ -271,7 +272,7 @@ public class GTLEXMachineRecipe {
                         .CWUt(16384))
                 .save(provider);
 
-        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder("time_space_breakes")
+        SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("time_space_breakes"))
                 .inputItems(Registries.getItem("kubejs:suprachronal_mainframe_complex"), 128)
                 .inputItems(AdvancedMultiBlockMachine.DIMENSIONALLY_TRANSCENDENT_PLASMA_FORGE, 64)
                 .inputItems(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineA.QFT, 64)

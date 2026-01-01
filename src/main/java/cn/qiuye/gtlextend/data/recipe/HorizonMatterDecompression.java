@@ -1,5 +1,7 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
+
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
 import org.gtlcore.gtlcore.utils.Registries;
 
@@ -16,7 +18,7 @@ import static org.gtlcore.gtlcore.common.data.GTLMaterials.*;
 public class HorizonMatterDecompression {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        HORIZON_MATTER_DECOMPRESSION_RECIPES.recipeBuilder("horizon_matter_decompression")
+        HORIZON_MATTER_DECOMPRESSION_RECIPES.recipeBuilder(GTL_Extend.id("horizon_matter_decompression"))
                 .inputItems(Registries.getItem("kubejs:quantum_chromodynamic_charge"))
                 .inputFluids(GTLMaterials.CosmicElement.getFluid(1024000))
                 .outputFluids(Argon.getFluid(FluidStorageKeys.PLASMA, 131072000),

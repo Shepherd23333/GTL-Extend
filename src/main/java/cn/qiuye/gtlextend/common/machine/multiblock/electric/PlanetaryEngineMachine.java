@@ -21,7 +21,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -67,7 +66,7 @@ public class PlanetaryEngineMachine extends WorkableElectricMultiblockMachine {
                 Flyb, TaraniumRichLiquidHelium4, QuarkGluon, DenseNeutron, HighEnergyQuarkGluon, RawStarMatter, CosmicMesh, ActiniumSuperhydride };
 
         Random random = new Random();
-        List<Material> selectedMaterials = new ArrayList<>();
+        List<Material> selectedMaterials = new ObjectArrayList<>();
 
         for (Material material : materials) {
             int randomValue = random.nextInt(100) + 1;

@@ -1,5 +1,6 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Materials;
 import cn.qiuye.gtlextend.config.GTLExtendConfigHolder;
 
@@ -40,7 +41,7 @@ public class GeneralAE_Recipe {
                     suffix = "blank_pattern"; // 保持与原名称一致
                 }
 
-                GENERAL_PURPOSE_AE_PRODUCTION_RECIPES.recipeBuilder("gtl_ex_ae2_fluix_cable_" + suffix)
+                GENERAL_PURPOSE_AE_PRODUCTION_RECIPES.recipeBuilder(GTL_Extend.id("ae2_fluix_cable_" + suffix))
                         .circuitMeta(circuitMeta)
                         .chancedInput(new ItemStack(Registries.getItem(inputItem)), 9000, 0) // 动态指定输入
                         .inputFluids(GTL_Extend_Materials.FLUIXCRYSTAL.getFluid(144))

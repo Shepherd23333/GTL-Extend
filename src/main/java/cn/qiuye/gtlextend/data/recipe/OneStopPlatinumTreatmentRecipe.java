@@ -1,5 +1,7 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import cn.qiuye.gtlextend.GTL_Extend;
+
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
 import org.gtlcore.gtlcore.utils.Registries;
 
@@ -17,7 +19,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 public class OneStopPlatinumTreatmentRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder("platinum_treatment")
+        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder(GTL_Extend.id("platinum_treatment"))
                 .inputItems(Registries.getItem("gtceu:platinum_group_sludge_dust"), 5000)
                 .inputItems(Registries.getItem("gtceu:sulfur_dust"), 139)
                 .inputFluids(Hydrogen.getFluid(625000))
@@ -37,7 +39,7 @@ public class OneStopPlatinumTreatmentRecipe {
                 .EUt(VA[LuV])
                 .save(provider);
 
-        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder("platinum_treatment_1")
+        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder(GTL_Extend.id("platinum_treatment_1"))
                 .inputItems(Registries.getItem("gtceu:platinum_group_sludge_dust"), 5000)
                 .inputItems(Registries.getItem("gtceu:sulfur_dust"), 139)
                 .inputFluids(Hydrogen.getFluid(625000))
@@ -57,7 +59,7 @@ public class OneStopPlatinumTreatmentRecipe {
                 .EUt(VA[LuV])
                 .save(provider);
 
-        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder("platinum_treatment_2")
+        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder(GTL_Extend.id("platinum_treatment_2"))
                 .inputItems(Registries.getItem("gtceu:platinum_group_sludge_dust"), 5000)
                 .inputItems(Registries.getItem("gtceu:sulfur_dust"), 139)
                 .inputFluids(Hydrogen.getFluid(625000))
@@ -77,7 +79,7 @@ public class OneStopPlatinumTreatmentRecipe {
                 .EUt(VA[LuV])
                 .save(provider);
 
-        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder("platinum_treatment_3")
+        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder(GTL_Extend.id("platinum_treatment_3"))
                 .inputItems(Registries.getItem("gtceu:platinum_group_sludge_dust"), 5000)
                 .inputItems(Registries.getItem("gtceu:sulfur_dust"), 139)
                 .inputFluids(Hydrogen.getFluid(625000))
@@ -97,7 +99,7 @@ public class OneStopPlatinumTreatmentRecipe {
                 .EUt(VA[LuV])
                 .save(provider);
 
-        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder("platinum_treatment_4")
+        PLATINUM_BASE_DPROCESSING_HUB_RECIPES.recipeBuilder(GTL_Extend.id("platinum_treatment_4"))
                 .inputItems(Registries.getItem("gtceu:platinum_group_sludge_dust"), 5000)
                 .inputItems(Registries.getItem("gtceu:sulfur_dust"), 139)
                 .inputFluids(Hydrogen.getFluid(625000))
