@@ -1,10 +1,7 @@
 package cn.qiuye.gtlextend;
 
 import cn.qiuye.gtlextend.api.registries.GTLEXRegistration;
-import cn.qiuye.gtlextend.common.data.GTL_Extend_Blocks;
-import cn.qiuye.gtlextend.common.data.GTL_Extend_Elements;
-import cn.qiuye.gtlextend.common.data.GTL_Extend_Item;
-import cn.qiuye.gtlextend.common.data.GTL_Extend_Ores;
+import cn.qiuye.gtlextend.common.data.*;
 import cn.qiuye.gtlextend.data.recipe.*;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
@@ -41,6 +38,11 @@ public class GTL_Extend_Addon implements IGTAddon {
     }
 
     @Override
+    public void registerSounds() {
+        GTL_Extend_SoundEntries.init();
+    }
+
+    @Override
     public void registerElements() {
         GTL_Extend_Elements.init();
     }
@@ -59,6 +61,7 @@ public class GTL_Extend_Addon implements IGTAddon {
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         GTLEXMachineRecipe.init(provider);
         CircuitsRecipe.init(provider);
+        CZYHFDJRecipe.init(provider);
         GeneralAE_Recipe.init(provider);
         PlanetaryEngineRecipe.init(provider);
         VoidPumpRecipe.init(provider);

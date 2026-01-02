@@ -49,6 +49,11 @@ public class GTL_Extend_RecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.FURNACE);
+    public final static GTRecipeType CZYHFDJ_RECIPES = register("czyhfdj", MULTIBLOCK)
+            .setMaxIOSize(2, 0, 0, 0)
+            .setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSound(GTL_Extend_SoundEntries.KMYY);
 
     public static String getCRTier(int tier) {
         if (tier == 2) {

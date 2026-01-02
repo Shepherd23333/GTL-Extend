@@ -18,6 +18,7 @@ import cn.qiuye.gtlextend.config.GTLExtendConfigHolder;
 import org.gtlcore.gtlcore.api.pattern.GTLPredicates;
 import org.gtlcore.gtlcore.common.data.GTLBlocks;
 import org.gtlcore.gtlcore.common.data.GTLMachines;
+import org.gtlcore.gtlcore.common.data.GTLRecipeModifiers;
 import org.gtlcore.gtlcore.common.data.GTLRecipeTypes;
 import org.gtlcore.gtlcore.utils.TextUtil;
 
@@ -590,6 +591,33 @@ public class MultiBlockMachineA {
                     .where("N", Predicates.blocks(Blocks.SHROOMLIGHT))
                     .where("O", Predicates.blocks(Blocks.GOLD_BLOCK))
                     .where("^", Predicates.blocks(Blocks.GLOWSTONE))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/hpca/high_power_casing"),
+                    GTCEu.id("block/multiblock/hpca"))
+            .register();
+
+    public static final MultiblockMachineDefinition CZYHFDJ = GTLEXRegistration.REGISTRATE
+            .multiblock("czyhfdj", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTL_Extend_RecipeTypes.CZYHFDJ_RECIPES)
+            .appearanceBlock(HIGH_POWER_CASING)
+            .generator(true)
+            .recipeModifier((machine, recipe, params, result) -> GTLRecipeModifiers.standardOverclocking((WorkableElectricMultiblockMachine) machine, recipe))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .pattern(definition -> KMYYMultiBlockStructure.PATTERN
+                    .where('~', Predicates.controller(blocks(definition.getBlock())))
+                    .where(' ', Predicates.any())
+                    .where('A', Predicates.blocks(GetRegistries.getBlock("minecraft:oak_planks"))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.OUTPUT_LASER)))
+                    .where('B', Predicates.blocks(GetRegistries.getBlock("gtceu:solid_machine_casing")))
+                    .where('C', Predicates.blocks(GetRegistries.getBlock("gtceu:inert_machine_casing")))
+                    .where('D', Predicates.blocks(GetRegistries.getBlock("gtceu:tempered_glass")))
+                    .where('E', Predicates.blocks(GetRegistries.getBlock("gtceu:reaction_safe_mixing_casing")))
+                    .where('F', Predicates.blocks(GetRegistries.getBlock("gtceu:steam_machine_casing")))
+                    .where('G', Predicates.blocks(GetRegistries.getBlock("gtlcore:aluminium_bronze_casing")))
+                    .where('H', Predicates.blocks(GetRegistries.getBlock("gtceu:cupronickel_coil_block")))
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/hpca/high_power_casing"),
                     GTCEu.id("block/multiblock/hpca"))

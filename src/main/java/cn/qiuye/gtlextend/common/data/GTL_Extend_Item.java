@@ -1,11 +1,12 @@
 package cn.qiuye.gtlextend.common.data;
 
+import cn.qiuye.gtlextend.GTL_Extend;
+
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.item.DataItemBehavior;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 import static cn.qiuye.gtlextend.api.registries.GTLEXRegistration.REGISTRATE;
@@ -32,6 +33,9 @@ public class GTL_Extend_Item {
     public static final ItemEntry<Item> ETERNALBLUE_DREAM_OPV_PROCESSOR_MAINFRAME;
     public static final ItemEntry<Item> ETERNALBLUE_DREAM_MAX_PROCESSOR_MAINFRAME;
 
+    public static final ItemEntry<Item> CZYH;
+    public static final ItemEntry<Item> ABA;
+
     static {
         // 设置创造模式标签页
         REGISTRATE.creativeModeTab(() -> GTL_Extend_CreativeModeTabs.GTL_EX_GT_ITEM);
@@ -41,6 +45,15 @@ public class GTL_Extend_Item {
         FOREVER = REGISTRATE.item("forever", Item::new)
                 .lang("Forever")
                 .register();
+
+        CZYH = REGISTRATE.item("czyh", Item::new)
+                .lang("长醉一号（QQ:3420705117，现ID 匿名的心事）")
+                .register();
+
+        ABA = REGISTRATE.item("abluealien", Item::new)
+                .lang("a blue alien")
+                .register();
+
         ADVANCED_DATA_MODULE = REGISTRATE.item("advanced_data_module", ComponentItem::create)
                 .onRegister(attach(new DataItemBehavior(true)))
                 .onRegister(compassNode(GTCompassSections.COMPONENTS))
@@ -66,7 +79,7 @@ public class GTL_Extend_Item {
     private static ItemEntry<Item> registerMainframe(String tier) {
         return REGISTRATE.item("eternalbluedream_" + tier + "_processor_maninframe", Item::new)
                 .lang("Eternal Blue Dream " + tier.toUpperCase() + " Processor maninframe")
-                .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), new ResourceLocation("gtl_extend", "item/eternalbluedream_processor_maninframe")))
+                .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), GTL_Extend.id("item/eternalbluedream_processor_maninframe")))
                 .register();
     }
 
