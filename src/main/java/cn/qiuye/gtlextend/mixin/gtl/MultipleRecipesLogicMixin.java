@@ -116,7 +116,7 @@ public abstract class MultipleRecipesLogicMixin extends RecipeLogic implements I
         output.outputs.put(ItemRecipeCapability.CAP, new ObjectArrayList<>());
         output.outputs.put(FluidRecipeCapability.CAP, new ObjectArrayList<>());
         double totalEu = 0;
-        long remain = (long) this.gTLExtend$machine.getMaxParallel() * gtl_extend$MaxThreads();
+        long remain = (long) Math.min(this.gTLExtend$machine.getMaxParallel(), Integer.MAX_VALUE - 1) * gtl_extend$MaxThreads();
         double euMultiplier = getEuMultiplier();
 
         while (remain > 0 && iterator.hasNext()) {
@@ -162,7 +162,7 @@ public abstract class MultipleRecipesLogicMixin extends RecipeLogic implements I
         final var itemOutputs = new ObjectArrayList<Content>();
         final var fluidOutputs = new ObjectArrayList<Content>();
 
-        long remain = (long) this.gTLExtend$machine.getMaxParallel() * gtl_extend$MaxThreads();
+        long remain = (long) Math.min(this.gTLExtend$machine.getMaxParallel(), Integer.MAX_VALUE - 1) * gtl_extend$MaxThreads();
         BigInteger totalEu = BigInteger.ZERO;
 
         while (remain > 0 && iterator.hasNext()) {
