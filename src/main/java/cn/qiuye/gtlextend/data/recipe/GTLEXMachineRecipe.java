@@ -13,7 +13,10 @@ import org.gtlcore.gtlcore.common.data.GTLItems;
 import org.gtlcore.gtlcore.common.data.GTLMaterials;
 import org.gtlcore.gtlcore.common.data.machines.AdvancedMultiBlockMachine;
 import org.gtlcore.gtlcore.common.data.machines.GeneratorMachine;
+import org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineB;
 import org.gtlcore.gtlcore.utils.Registries;
+
+import com.gtladd.gtladditions.common.machine.multiblock.MultiBlockMachine;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -128,7 +131,7 @@ public class GTLEXMachineRecipe {
                 .EUt(V[UHV])
                 .save(provider);
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("platinum_based_rocessing_hub"))
+        ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("platinum_based_processing_hub"))
                 .inputItems(Registries.getItem("gtceu:chemical_plant"), 16)
                 .inputItems(Registries.getItem("gtceu:large_distillery"), 4)
                 .inputItems(Registries.getItem("gtceu:large_sifting_funnel"), 4)
@@ -176,7 +179,7 @@ public class GTLEXMachineRecipe {
                 .duration(6400)
                 .EUt(V[UHV])
                 .duration(6400)
-                .stationResearch(b -> b.researchStack(GTResearchMachines.HIGH_PERFORMANCE_COMPUTING_ARRAY.asStack())
+                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachine.SUPER_COMPUTATION.asStack())
                         .dataStack(GTItems.TOOL_DATA_MODULE.asStack())
                         .EUt(VA[UHV])
                         .CWUt(256))
@@ -206,18 +209,18 @@ public class GTLEXMachineRecipe {
                 .outputItems(MultiBlockMachineA.BLACK_HOLE_MATTER_DECOMPRESSOR)
                 .duration(4400)
                 .EUt(V[MAX] * 16384)
-                .stationResearch(b -> b.researchStack(Registries.getItem("gtladditions:arcanic_astrograph").getDefaultInstance())
+                .stationResearch(b -> b.researchStack(Registries.getItem("gtladditions:astral_array").getDefaultInstance())
                         .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
                         .EUt(VA[MAX])
                         .CWUt(16384))
                 .save(provider);
 
         SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("dimensionalpower"))
-                .inputItems(GeneratorMachine.ANNIHILATE_GENERATOR, 4)
-                .inputItems(GeneratorMachine.ADVANCED_HYPER_REACTOR, 16)
-                .inputItems(GeneratorMachine.DYSON_SPHERE, 16)
-                .inputItems(GeneratorMachine.HYPER_REACTOR, 64)
-                .inputItems(GeneratorMachine.LARGE_NAQUADAH_REACTOR, 64)
+                .inputItems(MultiBlockMachine.INSTANCE.getHEART_OF_THE_UNIVERSE(), 4)
+                .inputItems(GeneratorMachine.ANNIHILATE_GENERATOR, 16)
+                .inputItems(MultiBlockMachine.INSTANCE.getPLANETARY_IONISATION_CONVERGENCE_TOWER(), 16)
+                .inputItems(GeneratorMachine.ADVANCED_HYPER_REACTOR, 64)
+                .inputItems(GeneratorMachine.DYSON_SPHERE, 64)
                 .inputItems(Registries.getItem("kubejs:suprachronal_mainframe_complex"), 64)
                 .inputItems(GeneratorMachine.GENERATOR_ARRAY, 64)
                 .inputItems(GTLItems.ELECTRIC_MOTOR_MAX, 64)
@@ -229,14 +232,14 @@ public class GTLEXMachineRecipe {
                 .inputItems(GTLItems.EMITTER_MAX, 64)
                 .inputItems(GTLItems.SENSOR_MAX, 64)
                 .inputItems(Registries.getItem("avaritia:singularity"), 64)
-                .inputFluids(GTLMaterials.DimensionallyTranscendentCrudeCatalyst.getFluid(1000000))
                 .inputFluids(GTLMaterials.DimensionallyTranscendentProsaicCatalyst.getFluid(1000000))
                 .inputFluids(GTLMaterials.DimensionallyTranscendentResplendentCatalyst.getFluid(1000000))
                 .inputFluids(GTLMaterials.DimensionallyTranscendentExoticCatalyst.getFluid(1000000))
+                .inputFluids(GTLMaterials.DimensionallyTranscendentStellarCatalyst.getFluid(1000000))
                 .outputItems(MultiBlockMachineA.DIMENSIONALPOWER)
                 .duration(4400)
                 .EUt(V[MAX] * 16384)
-                .stationResearch(b -> b.researchStack(GeneratorMachine.ANNIHILATE_GENERATOR.asStack())
+                .stationResearch(b -> b.researchStack(MultiBlockMachine.INSTANCE.getHEART_OF_THE_UNIVERSE().asStack())
                         .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
                         .EUt(VA[MAX])
                         .CWUt(16384))
@@ -266,7 +269,7 @@ public class GTLEXMachineRecipe {
                 .outputItems(MultiBlockMachineA.DIMENSIONALLY_TRANSCENDENT_DISSOLVING_TANK)
                 .duration(4400)
                 .EUt(V[UEV] * 16384)
-                .stationResearch(b -> b.researchStack(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineB.DISSOLVING_TANK.asStack())
+                .stationResearch(b -> b.researchStack(MultiBlockMachineB.DISSOLVING_TANK.asStack())
                         .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
                         .EUt(VA[UEV])
                         .CWUt(16384))
@@ -274,8 +277,8 @@ public class GTLEXMachineRecipe {
 
         SUPRACHRONAL_ASSEMBLY_LINE_RECIPES.recipeBuilder(GTL_Extend.id("time_space_breakes"))
                 .inputItems(Registries.getItem("kubejs:suprachronal_mainframe_complex"), 128)
-                .inputItems(AdvancedMultiBlockMachine.DIMENSIONALLY_TRANSCENDENT_PLASMA_FORGE, 64)
-                .inputItems(org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineA.QFT, 64)
+                .inputItems(MultiBlockMachine.INSTANCE.getFORGE_OF_THE_ANTICHRIST(), 8)
+                .inputItems(MultiBlockMachine.INSTANCE.getTIME_SPACE_DISTORTER(), 32)
                 .inputItems(Registries.getItem("kubejs:quantum_anomaly"), 256)
                 .inputItems(Registries.getItem("gtladditions:arcanic_astrograph"), 64)
                 .inputItems(Registries.getItem("kubejs:annihilate_core"), 1024)
@@ -284,7 +287,7 @@ public class GTLEXMachineRecipe {
                 .inputItems(ChemicalHelper.get(TagPrefix.block, TranscendentMetal), 128)
                 .inputItems(Registries.getItem("kubejs:create_ultimate_battery"), 32)
                 .inputItems(Registries.getItem("kubejs:dimension_creation_casing"), 128)
-                .inputItems(MultiBlockMachineA.BLACK_HOLE_MATTER_DECOMPRESSOR, 8)
+                .inputItems(MultiBlockMachineA.BLACK_HOLE_MATTER_DECOMPRESSOR, 2)
                 .inputItems(Registries.getItem("kubejs:create_aggregatione_core"), 32)
                 .inputItems(CustomTags.MAX_CIRCUITS, 256)
                 .inputItems(Registries.getItem("kubejs:cosmic_singularity"), 32)

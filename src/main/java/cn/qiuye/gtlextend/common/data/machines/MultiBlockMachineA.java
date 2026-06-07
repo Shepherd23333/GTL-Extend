@@ -419,7 +419,7 @@ public class MultiBlockMachineA {
             .hasTESR(true)
             .register();
 
-    public static final MultiblockMachineDefinition PLATINUM_BASE_DPROCESSING_HUB = GTLEXRegistration.REGISTRATE.multiblock("platinum_based_rocessing_hub", PlatinumBasedRocessingHub::new)
+    public static final MultiblockMachineDefinition PLATINUM_BASE_DPROCESSING_HUB = GTLEXRegistration.REGISTRATE.multiblock("platinum_based_processing_hub", PlatinumBasedProcessingHub::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTL_Extend_RecipeTypes.PLATINUM_BASE_DPROCESSING_HUB_RECIPES)
             .appearanceBlock(ADVANCED_COMPUTER_CASING)
@@ -544,7 +544,8 @@ public class MultiBlockMachineA {
     public static final MultiblockMachineDefinition TIME_SPACE_BREAKER = GTLEXRegistration.REGISTRATE.multiblock("time_space_breaker", TimeSpaceBreakerMultiple::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTLRecipeTypes.QFT_RECIPES,
-                    GTLRecipeTypes.DIMENSIONALLY_TRANSCENDENT_PLASMA_FORGE_RECIPES)
+                    GTLRecipeTypes.DIMENSIONALLY_TRANSCENDENT_PLASMA_FORGE_RECIPES,
+                    GTL_Extend_RecipeTypes.STABLE_SPACETIME_COMPRESSION_RECIPES)
             .appearanceBlock(HIGH_POWER_CASING)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
@@ -554,9 +555,10 @@ public class MultiBlockMachineA {
             .tooltips(Component.literal("因机器特性无法使用任何隔离"))
             .tooltips(Component.literal("灯建议使用创造搭，因自动搭建逻辑问题，无法生存自动搭建，需要扔掉对应的灯，使用创造搭建"))
             .tooltips(Component.literal(TextUtil.purplish_red("结构来源：Mailgusang ---已获取授权")))
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_2.tooltip",
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_3.tooltip",
                     Component.translatable("gtceu.dimensionally_transcendent_plasma_forge"),
-                    Component.translatable("gtceu.qft")))
+                    Component.translatable("gtceu.qft"),
+                    Component.translatable("gtceu.stable_spacetime_compression")))
             .tooltipBuilder(GTL_EX_ADD)
             .pattern(definition -> TimeSpaceBreakerMultiBlock.PATTERN
                     .where("~", Predicates.controller(blocks(definition.getBlock())))
@@ -629,7 +631,7 @@ public class MultiBlockMachineA {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTL_Extend_RecipeTypes.PLANETARY_ENGINE_RECIPES)
             .appearanceBlock(HIGH_POWER_CASING)
-            .recipeModifier((machine, recipe, params, result) -> PlanetaryEngineMachine.PERecipeModifier(machine, recipe, params, result))
+            .recipeModifier(PlanetaryEngineMachine::PERecipeModifier)
             .pattern(definition -> PlanetaryEngineMultiblock.PATTERN
                     .where('~', controller(blocks(definition.getBlock())))
                     .where(' ', any())

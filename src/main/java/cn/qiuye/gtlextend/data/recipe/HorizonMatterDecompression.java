@@ -7,6 +7,8 @@ import org.gtlcore.gtlcore.utils.Registries;
 
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
+import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -55,6 +57,7 @@ public class HorizonMatterDecompression {
                         RawStarMatter.getFluid(FluidStorageKeys.PLASMA, 131072000),
                         CosmicMesh.getFluid(FluidStorageKeys.PLASMA, 131072000),
                         ActiniumSuperhydride.getFluid(FluidStorageKeys.PLASMA, 131072000),
+                        FluidStack.create(Registries.getFluid("gtladditions:creon_plasma"), 131072000),
                         CosmicNeutronium.getFluid(131072000),
                         Eternity.getFluid(131072000))
                 .duration(1200)

@@ -20,7 +20,7 @@ public class GTL_Extend_RecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SCIENCE);
     public final static GTRecipeType HORIZON_MATTER_DECOMPRESSION_RECIPES = register("horizon_matter_decompression", MULTIBLOCK)
-            .setMaxIOSize(1, 0, 1, 36)
+            .setMaxIOSize(1, 0, 1, 37)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SCIENCE);
     public final static GTRecipeType PLATINUM_BASE_DPROCESSING_HUB_RECIPES = register("one_stop_platinum_treatment", MULTIBLOCK)
@@ -54,6 +54,12 @@ public class GTL_Extend_RecipeTypes {
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTL_Extend_SoundEntries.KMYY);
+
+    public final static GTRecipeType STABLE_SPACETIME_COMPRESSION_RECIPES = register("stable_spacetime_compression", MULTIBLOCK)
+            .setMaxIOSize(5, 1, 1, 0)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.SCIENCE);
 
     public static String getCRTier(int tier) {
         if (tier == 2) {
