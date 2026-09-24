@@ -1,5 +1,7 @@
 package cn.qiuye.gtlextend.common.data.machines;
 
+import appeng.core.AppEng;
+import appeng.core.definitions.AEBlocks;
 import cn.qiuye.gtlextend.api.registries.GTLEXRegistration;
 import cn.qiuye.gtlextend.api.registries.GetRegistries;
 import cn.qiuye.gtlextend.client.renderer.machine.BlackHoleMatterDecompressorRender;
@@ -14,16 +16,6 @@ import cn.qiuye.gtlextend.common.machine.multiblock.noenergy.DimensionalPower;
 import cn.qiuye.gtlextend.common.machine.multiblock.noenergy.TimeSpaceBreakerMultipleType;
 import cn.qiuye.gtlextend.common.machine.multiblock.steam.GeneralPurposeSteamEngine;
 import cn.qiuye.gtlextend.config.GTLExtendConfigHolder;
-
-import org.gtlcore.gtlcore.api.pattern.GTLPredicates;
-import org.gtlcore.gtlcore.common.data.GTLBlocks;
-import org.gtlcore.gtlcore.common.data.GTLMachines;
-import org.gtlcore.gtlcore.common.data.GTLRecipeModifiers;
-import org.gtlcore.gtlcore.common.data.GTLRecipeTypes;
-import org.gtlcore.gtlcore.utils.TextUtil;
-
-import com.gtladd.gtladditions.api.machine.GTLAddPartAbility;
-
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -37,14 +29,18 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
-
-import appeng.core.AppEng;
-import appeng.core.definitions.AEBlocks;
+import com.gtladd.gtladditions.api.machine.GTLAddPartAbility;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import org.gtlcore.gtlcore.api.pattern.GTLPredicates;
+import org.gtlcore.gtlcore.common.data.GTLBlocks;
+import org.gtlcore.gtlcore.common.data.GTLMachines;
+import org.gtlcore.gtlcore.common.data.GTLRecipeModifiers;
+import org.gtlcore.gtlcore.common.data.GTLRecipeTypes;
+import org.gtlcore.gtlcore.utils.TextUtil;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -136,10 +132,12 @@ public class MultiBlockMachineA {
                     .where("~", Predicates.controller(blocks(definition.get())))
                     .where(" ", Predicates.any())
                     .where("A", Predicates.blocks(GTBlocks.CASING_BRONZE_BRICKS.get())
-                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(1))
-                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1))
-                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1))
-                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setMaxGlobalLimited(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setMaxGlobalLimited(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(3))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(3))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(4))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setMaxGlobalLimited(1))
                             .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
                     .where("B", Predicates.blocks(GTL_Extend_Blocks.VOID_WORLD_BLOCK.get()))

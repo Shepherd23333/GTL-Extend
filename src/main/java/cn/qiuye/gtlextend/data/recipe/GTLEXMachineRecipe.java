@@ -1,25 +1,11 @@
 package cn.qiuye.gtlextend.data.recipe;
 
+import appeng.core.definitions.AEBlocks;
 import cn.qiuye.gtlextend.GTL_Extend;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Blocks;
 import cn.qiuye.gtlextend.common.data.GTL_Extend_Item;
 import cn.qiuye.gtlextend.common.data.machines.MultiBlockMachineA;
 import cn.qiuye.gtlextend.config.GTLExtendConfigHolder;
-
-import org.gtlcore.gtlcore.api.data.tag.GTLTagPrefix;
-import org.gtlcore.gtlcore.common.data.GTLBlocks;
-import org.gtlcore.gtlcore.common.data.GTLItems;
-import org.gtlcore.gtlcore.common.data.GTLMachines;
-import org.gtlcore.gtlcore.common.data.machines.AdvancedMultiBlockMachine;
-import org.gtlcore.gtlcore.common.data.machines.GCyMMachines;
-import org.gtlcore.gtlcore.common.data.machines.GeneratorMachine;
-import org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineB;
-import org.gtlcore.gtlcore.utils.Registries;
-
-import com.gtladd.gtladditions.common.items.GTLAddItems;
-import com.gtladd.gtladditions.common.machine.multiblock.MultiBlockMachine;
-import com.gtladd.gtladditions.common.material.GTLAddMaterial;
-
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GCyMBlocks;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
@@ -27,13 +13,20 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-
-import appeng.core.definitions.AEBlocks;
+import com.gtladd.gtladditions.common.items.GTLAddItems;
+import com.gtladd.gtladditions.common.machine.multiblock.MultiBlockMachine;
+import com.gtladd.gtladditions.common.material.GTLAddMaterial;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.gtlcore.gtlcore.api.data.tag.GTLTagPrefix;
+import org.gtlcore.gtlcore.common.data.GTLBlocks;
+import org.gtlcore.gtlcore.common.data.GTLItems;
+import org.gtlcore.gtlcore.common.data.GTLMachines;
+import org.gtlcore.gtlcore.common.data.machines.*;
+import org.gtlcore.gtlcore.utils.Registries;
 
 import java.util.function.Consumer;
 
@@ -41,7 +34,8 @@ import static cn.qiuye.gtlextend.common.data.GTL_Extend_Blocks.DIMENSION_CORE;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLY_LINE_RECIPES;
 import static org.gtlcore.gtlcore.common.data.GTLMaterials.*;
 import static org.gtlcore.gtlcore.common.data.GTLRecipeTypes.SUPRACHRONAL_ASSEMBLY_LINE_RECIPES;
 import static org.gtlcore.gtlcore.common.data.machines.MultiBlockMachineA.*;
@@ -179,7 +173,7 @@ public class GTLEXMachineRecipe {
                 .outputItems(MultiBlockMachineA.PLATINUM_BASE_DPROCESSING_HUB)
                 .duration(6400)
                 .EUt(V[LuV])
-                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachine.ISA_MILL.asStack())
+                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachineB.ISA_MILL.asStack())
                         .dataStack(GTItems.TOOL_DATA_MODULE.asStack())
                         .EUt(VA[LuV])
                         .CWUt(128))
@@ -210,7 +204,7 @@ public class GTLEXMachineRecipe {
                 .duration(6400)
                 .EUt(V[UHV])
                 .duration(6400)
-                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachine.SUPER_COMPUTATION.asStack())
+                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachineB.SUPER_COMPUTATION.asStack())
                         .dataStack(GTItems.TOOL_DATA_MODULE.asStack())
                         .EUt(VA[UHV])
                         .CWUt(256))
@@ -222,7 +216,7 @@ public class GTLEXMachineRecipe {
                 .inputItems(Registries.getItem("kubejs:dimensional_stability_casing"), 64)
                 .inputItems(MultiBlockMachine.INSTANCE.getFUXI_BAGUA_HEAVEN_FORGING_FURNACE(), 4)
                 .inputItems(MultiBlockMachine.INSTANCE.getARCANIC_ASTROGRAPH(), 8)
-                .inputItems(AdvancedMultiBlockMachine.EYE_OF_HARMONY, 64)
+                .inputItems(AdvancedMultiBlockMachineA.EYE_OF_HARMONY, 64)
                 .inputItems(Registries.getItem("kubejs:ctc_computational_unit"), 64)
                 .inputItems(Registries.getItem("kubejs:stabilized_wormhole_generator"), 64)
                 .inputItems(CustomTags.MAX_CIRCUITS, 32)
@@ -289,7 +283,7 @@ public class GTLEXMachineRecipe {
                 .inputItems(Registries.getItem("kubejs:aggregatione_core"), 64)
                 .inputItems(GTLTagPrefix.nanoswarm, Neutronium, 32)
                 .inputItems(CHEMICAL_DISTORT, 16)
-                .inputItems(AdvancedMultiBlockMachine.SPACE_ELEVATOR, 8)
+                .inputItems(AdvancedMultiBlockMachineB.SPACE_ELEVATOR, 8)
                 .inputItems(Registries.getItem("kubejs:stabilizer_core"), 4)
                 .inputItems(SLAUGHTERHOUSE, 1)
                 .inputItems(GTL_Extend_Blocks.DIMENSION_CORE, 1)
@@ -330,7 +324,7 @@ public class GTLEXMachineRecipe {
                 .outputItems(MultiBlockMachineA.TIME_SPACE_BREAKER)
                 .duration(1200)
                 .EUt(V[MAX] * 4194304)
-                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachine.DOOR_OF_CREATE.asStack())
+                .stationResearch(b -> b.researchStack(AdvancedMultiBlockMachineA.DOOR_OF_CREATE.asStack())
                         .dataStack(GTL_Extend_Item.ADVANCED_DATA_MODULE.asStack())
                         .EUt(VA[MAX])
                         .CWUt(114514))

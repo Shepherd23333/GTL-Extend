@@ -15,23 +15,23 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SteamEnergyRecipeHandler;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-
+import com.gregtechceu.gtceu.common.machine.multiblock.part.SteamHatchPartMachine;
+import com.gtladd.gtladditions.common.machine.hatch.HugeSteamHatchPartMachine;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
+import org.gtlcore.gtlcore.common.machine.multiblock.part.LargeSteamHatchPartMachine;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -56,7 +56,9 @@ public class GeneralPurposeSteamEngine extends WorkableMultiblockMachine impleme
         while (itr.hasNext()) {
             var handler = itr.next();
             if (handler instanceof NotifiableFluidTank tank) {
-                if (tank.getFluidInTank(0).isFluidEqual(GTMaterials.Steam.getFluid(1))) {
+                var machine = tank.getMachine();
+                boolean isSteamHatch = machine instanceof SteamHatchPartMachine || machine instanceof LargeSteamHatchPartMachine || machine instanceof HugeSteamHatchPartMachine;
+                if (isSteamHatch || tank.getFluidInTank(0).isFluidEqual(GTMaterials.Steam.getFluid(1))) {
                     itr.remove();
                     if (!capabilitiesProxy.contains(IO.IN, EURecipeCapability.CAP)) {
                         capabilitiesProxy.put(IO.IN, EURecipeCapability.CAP, new ArrayList<>());

@@ -15,7 +15,6 @@
     "gtl.SpaceElevatorModuleMachineMixin",
     "gtl.WorkableElectricMultiblockMachineMixin",
     "gtladd.WirelessEnergyNetworkTerminalProviderMixin",
-    "gtm.BlockPatternMixin",
     "gtmt.WirelessEnergyMonitorMixin"
   ],
   "injectors": {
