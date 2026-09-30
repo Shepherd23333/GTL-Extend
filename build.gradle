@@ -31,6 +31,10 @@ generateModMetadata.doFirst {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
     options.compilerArgs << "-Xlint:-deprecation" << "-Xlint:-removal" // 忽略删除和过时，真删了报错再说吧
+    options.fork = true
+    options.forkOptions.jvmArgs += [
+            '-Xss4m' // 将栈大小提升到 4M（默认通常为 512k 或 1m）
+    ]
 }
 
 lombok {

@@ -15,7 +15,8 @@
     "gtl.SpaceElevatorModuleMachineMixin",
     "gtl.WorkableElectricMultiblockMachineMixin",
     "gtladd.WirelessEnergyNetworkTerminalProviderMixin",
-    "gtmt.WirelessEnergyMonitorMixin"
+    "gtmt.WirelessEnergyMonitorMixin",
+    "gtmt.WirelessEnergyReceiveCoverMixin"
   ],
   "injectors": {
     "defaultRequire": 1,

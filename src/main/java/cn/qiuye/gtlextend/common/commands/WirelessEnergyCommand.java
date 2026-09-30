@@ -6,6 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -30,8 +31,9 @@ public class WirelessEnergyCommand {
         try {
             BigInteger energy = new BigDecimal(energyString).toBigInteger();
             WirelessEnergyManager.setUserEU(player, energy);
+            context.getSource().sendSuccess(() -> Component.literal("Successful!"), true);
         } catch (Exception e) {
-            throw new RuntimeException("\"" + energyString + "\" is not a valid number.");
+            context.getSource().sendFailure(Component.literal("\"" + energyString + "\" is not a valid number."));
         }
         return 0;
     }
@@ -43,8 +45,9 @@ public class WirelessEnergyCommand {
             BigInteger energy = new BigDecimal(energyString).toBigInteger();
             BigInteger EU = WirelessEnergyManager.getUserEU(player);
             WirelessEnergyManager.setUserEU(player, EU.add(energy));
+            context.getSource().sendSuccess(() -> Component.literal("Successful!"), true);
         } catch (Exception e) {
-            throw new RuntimeException("\"" + energyString + "\" is not a valid number.");
+            context.getSource().sendFailure(Component.literal("\"" + energyString + "\" is not a valid number."));
         }
         return 1;
     }
